@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Concept 4 · Osteria Grafica — Trattoria Praetoria</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+/* ---------- transitions.dev motion tokens ---------- */
+:root {
+  --duration-stagger: 40ms;
+  --duration-micro: 80ms;
+  --duration-quick: 150ms;
+  --duration-fast: 250ms;
+  --duration-slow: 400ms;
+  --duration-very-slow: 500ms;
+  --ease-smooth-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: ease-in-out;
+  --ease-bounce: cubic-bezier(0.34, 1.36, 0.64, 1);
+  --distance-micro: 4px;
+  --distance-medium: 12px;
+  --blur-small: 2px;
+  --blur-medium: 3px;
+
+  --stagger-dur: 500ms;
+  --stagger-distance: 12px;
+  --stagger-stagger: 40ms;
+  --stagger-blur: 3px;
+  --stagger-ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --reel-dur: 1400ms;
+  --reel-cell: 1em;
+  --reel-stagger: 90ms;
+  --reel-ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --learn-shift: 2px;
+  --learn-spread: 8deg;
+  --learn-in: 350ms;
+  --learn-out: 350ms;
+  --learn-ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* ---------- concept palette ---------- */
+  --cream: #f3e9d2;
+  --cream-2: #eadcbd;
+  --tomato: #d8432a;
+  --mustard: #e9b52f;
+  --forest: #1f4d3a;
+  --sky: #9cc3d5;
+  --ink: #1b1712;
+  --display: "Bricolage Grotesque", Impact, sans-serif;
+  --mono: "DM Mono", ui-monospace, monospace;
+  --shadow: 5px 5px 0 var(--ink);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--cream); color: var(--ink); font-family: var(--display); font-size: 17px; line-height: 1.5; -webkit-font-smoothing: antialiased; overflow-x: clip; }
+img { display: block; max-width: 100%; }
+a { color: inherit; }
+.wrap { width: min(1280px, 92vw); margin-inline: auto; }
+h1, h2, h3 { margin: 0; font-weight: 800; font-stretch: 78%; line-height: 0.88; text-transform: uppercase; letter-spacing: -0.01em; }
+.mono { font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.04em; text-transform: uppercase; }
+
+.btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.95rem 1.4rem; font-weight: 800; font-stretch: 85%; text-transform: uppercase; letter-spacing: 0.02em; text-decoration: none; border: 2.5px solid var(--ink); border-radius: 14px; box-shadow: var(--shadow); transition: transform var(--duration-fast) var(--ease-bounce), box-shadow var(--duration-fast) var(--ease-bounce); }
+.btn:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--ink); }
+.btn:active { transform: translate(3px, 3px); box-shadow: 2px 2px 0 var(--ink); }
+.btn--tomato { background: var(--tomato); color: var(--cream); }
+.btn--cream { background: var(--cream); }
+.btn--mustard { background: var(--mustard); }
+
+/* learn more (#24) */
+.t-learn { display: inline-flex; align-items: center; gap: 0.3rem; font-weight: 800; text-transform: uppercase; text-decoration: none; }
+.t-learn svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; }
+.t-learn-chevron { display: inline-flex; transform: translateX(0); transition: transform var(--learn-out) var(--learn-ease); }
+.t-learn-arm { transform-box: view-box; transform-origin: 10px 8px; vector-effect: non-scaling-stroke; transition: transform var(--learn-out) var(--learn-ease); }
+.t-learn:hover .t-learn-chevron { transform: translateX(var(--learn-shift)); transition-duration: var(--learn-in); }
+.t-learn:hover .t-learn-arm { transition-duration: var(--learn-in); }
+.t-learn:hover .t-learn-arm-top { transform: rotate(var(--learn-spread)); }
+.t-learn:hover .t-learn-arm-bot { transform: rotate(calc(var(--learn-spread) * -1)); }
+
+/* texts reveal (#18) */
+.t-stagger-line { display: block; opacity: 0; transform: translateY(var(--stagger-distance)); filter: blur(var(--stagger-blur)); transition: opacity var(--stagger-dur) var(--stagger-ease), transform var(--stagger-dur) var(--stagger-ease), filter var(--stagger-dur) var(--stagger-ease); will-change: transform, opacity, filter; }
+.t-stagger-line--2 { transition-delay: var(--stagger-stagger); }
+.t-stagger-line--3 { transition-delay: calc(var(--stagger-stagger) * 2); }
+.t-stagger-line--4 { transition-delay: calc(var(--stagger-stagger) * 3); }
+.t-stagger-line--5 { transition-delay: calc(var(--stagger-stagger) * 4); }
+.t-stagger.is-shown .t-stagger-line { opacity: 1; transform: translateY(0); filter: blur(0); }
+.reveal { opacity: 0; transform: translateY(var(--distance-medium)); filter: blur(var(--blur-medium)); transition: opacity var(--duration-very-slow) var(--ease-smooth-out), transform var(--duration-very-slow) var(--ease-smooth-out), filter var(--duration-very-slow) var(--ease-smooth-out); }
+.reveal.is-shown { opacity: 1; transform: none; filter: none; }
+
+/* ---------- marquee ---------- */
+.marquee { background: var(--ink); color: var(--mustard); overflow: hidden; white-space: nowrap; border-bottom: 2.5px solid var(--ink); }
+.marquee__track { display: inline-flex; gap: 2.5rem; padding: 0.6rem 0; animation: marquee 32s linear infinite; font-weight: 800; font-stretch: 80%; text-transform: uppercase; font-size: 1rem; letter-spacing: 0.04em; }
+.marquee__track span::after { content: "✦"; margin-left: 2.5rem; color: var(--tomato); }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+/* ---------- nav ---------- */
+.nav { position: sticky; top: 0; z-index: 50; background: var(--cream); border-bottom: 2.5px solid var(--ink); }
+.nav__inner { display: flex; align-items: center; justify-content: space-between; height: 72px; gap: 1rem; }
+.brand { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
+.brand img { width: 38px; }
+.brand span { font-weight: 800; font-stretch: 75%; font-size: 1.6rem; text-transform: uppercase; letter-spacing: -0.01em; }
+.nav__links { display: flex; gap: 0.4rem; }
+.nav__links a { text-decoration: none; font-weight: 700; text-transform: uppercase; font-size: 0.92rem; padding: 0.45rem 0.8rem; border-radius: 999px; border: 2px solid transparent; transition: border-color var(--duration-fast) var(--ease-smooth-out), background-color var(--duration-fast) var(--ease-smooth-out); }
+.nav__links a:hover { border-color: var(--ink); background: var(--mustard); }
+.nav .btn { padding: 0.6rem 1rem; box-shadow: 3px 3px 0 var(--ink); }
+
+/* ---------- hero ---------- */
+.hero { padding: clamp(2.5rem, 6vw, 4.5rem) 0 clamp(3rem, 7vw, 5rem); }
+.hero__grid { display: grid; grid-template-columns: 1.35fr 1fr; gap: clamp(1.5rem, 4vw, 3.5rem); align-items: center; }
+.hero h1 { font-size: clamp(3.6rem, 10.5vw, 9.6rem); }
+.hero h1 .t-stagger-line:nth-child(2) { color: var(--tomato); }
+.hero h1 .t-stagger-line:nth-child(3) { color: var(--forest); }
+.hero__sub { font-size: 1.2rem; max-width: 40ch; margin: 1.6rem 0 2rem; }
+.hero__ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+.arch { position: relative; }
+.arch__img { width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 999px 999px 18px 18px; border: 2.5px solid var(--ink); box-shadow: 10px 10px 0 var(--forest); }
+.spin-badge { position: absolute; width: 150px; height: 150px; left: -48px; bottom: 40px; animation: spin 18s linear infinite; }
+.spin-badge text { font-family: var(--mono); font-size: 11.5px; letter-spacing: 2.2px; fill: var(--ink); text-transform: uppercase; }
+.spin-badge circle.bg { fill: var(--mustard); stroke: var(--ink); stroke-width: 2.5; }
+.spin-badge__center { position: absolute; width: 150px; height: 150px; left: -48px; bottom: 40px; display: grid; place-items: center; font-weight: 800; font-size: 1.3rem; pointer-events: none; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.stamp { position: absolute; top: 18px; right: -14px; background: var(--tomato); color: var(--cream); font-weight: 800; font-stretch: 80%; text-transform: uppercase; padding: 0.5rem 0.9rem; border: 2.5px solid var(--ink); border-radius: 10px; transform: rotate(7deg); box-shadow: 3px 3px 0 var(--ink); }
+
+/* ---------- counters (spinning counter #26) ---------- */
+.stats { background: var(--forest); color: var(--cream); border-block: 2.5px solid var(--ink); }
+.stats__grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+.stat { padding: 2rem 1.2rem; border-right: 2px dashed rgba(243, 233, 210, 0.3); text-align: center; }
+.stat:last-child { border-right: 0; }
+.stat__num { font-weight: 800; font-stretch: 75%; font-size: clamp(3rem, 7vw, 5.5rem); line-height: 1; color: var(--mustard); display: inline-flex; }
+.stat__label { display: block; margin-top: 0.5rem; }
+.t-reel { display: inline-flex; align-items: center; height: var(--reel-cell); font-variant-numeric: tabular-nums; }
+.t-reel-col { position: relative; height: var(--reel-cell); overflow: hidden; -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 18%, #000 82%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0%, #000 18%, #000 82%, transparent 100%); }
+.t-reel-strip { display: flex; flex-direction: column; will-change: transform; }
+.t-reel-digit { height: var(--reel-cell); display: flex; align-items: center; justify-content: center; }
+
+/* ---------- raclette ---------- */
+.rac { background: var(--mustard); border-bottom: 2.5px solid var(--ink); padding: clamp(4rem, 9vw, 7rem) 0; overflow: hidden; position: relative; }
+.rac__grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+.rac h2 { font-size: clamp(4.5rem, 13vw, 11rem); }
+.rac h2 span { display: block; font-size: 0.32em; font-stretch: 90%; letter-spacing: 0.02em; color: var(--tomato); margin-bottom: 0.25em; }
+.rac__text { font-size: 1.2rem; max-width: 38ch; margin: 1.4rem 0 1.8rem; }
+.wheel-wrap { position: relative; aspect-ratio: 1; max-width: 520px; margin-inline: auto; width: 100%; }
+.wheel { width: 100%; height: 100%; transform: rotate(var(--rot, 0deg)); }
+.wheel text { font-weight: 800; font-size: 22px; letter-spacing: 6px; text-transform: uppercase; fill: var(--ink); font-family: var(--display); }
+.wheel .rind { transition: fill var(--duration-slow) var(--ease-smooth-out); }
+.wheel .ash { opacity: 0; transition: opacity var(--duration-slow) var(--ease-smooth-out); }
+.rac[data-variant="fumee"] .wheel .rind { fill: #5a3418; }
+.rac[data-variant="morbier"] .wheel .ash { opacity: 1; }
+.price-sticker { position: absolute; right: 0; top: 4%; width: 140px; height: 140px; border-radius: 50%; background: var(--tomato); color: var(--cream); border: 2.5px solid var(--ink); box-shadow: var(--shadow); display: grid; place-items: center; text-align: center; transform: rotate(-8deg); line-height: 1; }
+.price-sticker strong { display: block; font-size: 2.8rem; font-weight: 800; font-stretch: 75%; }
+.price-sticker small { font-family: var(--mono); font-size: 0.7rem; text-transform: uppercase; }
+.placeholder-tag { position: absolute; left: 0; bottom: 0; font-family: var(--mono); font-size: 0.7rem; text-transform: uppercase; background: var(--cream); border: 2px dashed var(--ink); padding: 0.3rem 0.55rem; border-radius: 8px; }
+.choices { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-bottom: 1.6rem; }
+.choice { appearance: none; cursor: pointer; text-align: left; border: 2.5px solid var(--ink); border-radius: 14px; background: var(--cream); padding: 0.75rem 1rem; font: inherit; box-shadow: 4px 4px 0 var(--ink); transition: transform var(--duration-fast) var(--ease-bounce), box-shadow var(--duration-fast) var(--ease-bounce), background-color var(--duration-fast) var(--ease-smooth-out); }
+.choice b { display: block; font-weight: 800; font-stretch: 80%; text-transform: uppercase; font-size: 1.3rem; line-height: 1; }
+.choice small { font-family: var(--mono); font-size: 0.72rem; }
+.choice:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--ink); }
+.choice[aria-pressed="true"] { background: var(--ink); color: var(--mustard); transform: translate(3px, 3px); box-shadow: 1px 1px 0 var(--ink); }
+.with { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0 0 2rem; padding: 0; list-style: none; }
+.with li { font-family: var(--mono); font-size: 0.78rem; text-transform: uppercase; border: 2px solid var(--ink); padding: 0.35rem 0.65rem; border-radius: 999px; background: rgba(243, 233, 210, 0.6); }
+.desc-swap { display: inline-block; transition: opacity var(--duration-quick) var(--ease-in-out), transform var(--duration-quick) var(--ease-in-out), filter var(--duration-quick) var(--ease-in-out); }
+.desc-swap.is-out { opacity: 0; transform: translateY(calc(var(--distance-micro) * -1)); filter: blur(var(--blur-small)); }
+.desc-swap.is-in { opacity: 0; transform: translateY(var(--distance-micro)); filter: blur(var(--blur-small)); transition: none; }
+
+/* ---------- menu poster grid ---------- */
+.section { padding: clamp(4rem, 9vw, 7rem) 0; }
+.section__head { display: flex; justify-content: space-between; align-items: end; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+.section__head h2 { font-size: clamp(3rem, 8vw, 6.5rem); }
+.posters { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.1rem; }
+.poster { border: 2.5px solid var(--ink); border-radius: 18px; padding: 1.4rem 1.2rem; box-shadow: var(--shadow); transition: transform var(--duration-fast) var(--ease-bounce), box-shadow var(--duration-fast) var(--ease-bounce); display: flex; flex-direction: column; min-height: 360px; }
+.poster:hover { transform: translate(-3px, -3px) rotate(-0.6deg); box-shadow: 9px 9px 0 var(--ink); }
+.poster h3 { font-size: 2.3rem; margin-bottom: 1.2rem; }
+.poster ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.75rem; flex: 1; }
+.poster li { display: flex; justify-content: space-between; gap: 0.6rem; font-weight: 600; border-bottom: 2px solid currentColor; padding-bottom: 0.55rem; }
+.poster li span:last-child { font-family: var(--mono); }
+.poster .mono { margin-top: 1.2rem; }
+.poster--tomato { background: var(--tomato); color: var(--cream); }
+.poster--forest { background: var(--forest); color: var(--cream); }
+.poster--mustard { background: var(--mustard); }
+.poster--sky { background: var(--sky); }
+
+/* ---------- photo row ---------- */
+.photos { display: flex; justify-content: center; gap: 0; margin-top: 4.5rem; flex-wrap: wrap; }
+.photo { width: min(240px, 44vw); background: #fff; padding: 10px 10px 34px; border: 2.5px solid var(--ink); box-shadow: 4px 4px 0 var(--ink); margin: 0 -10px; transition: transform var(--duration-slow) var(--ease-bounce); position: relative; }
+.photo img { width: 100%; aspect-ratio: 1; object-fit: cover; }
+.photo figcaption { position: absolute; left: 0; right: 0; bottom: 8px; text-align: center; font-family: var(--mono); font-size: 0.72rem; text-transform: uppercase; }
+.photo:nth-child(1) { transform: rotate(-6deg); }
+.photo:nth-child(2) { transform: rotate(3deg) translateY(14px); }
+.photo:nth-child(3) { transform: rotate(-2deg); }
+.photo:nth-child(4) { transform: rotate(5deg) translateY(10px); }
+.photo:nth-child(5) { transform: rotate(-4deg); }
+.photo:hover { transform: rotate(0) translateY(-10px) scale(1.06); z-index: 2; }
+
+/* ---------- groups ---------- */
+.groups { background: var(--forest); color: var(--cream); border: 2.5px solid var(--ink); border-radius: 26px; box-shadow: 10px 10px 0 var(--ink); padding: clamp(2rem, 5vw, 4rem); display: grid; grid-template-columns: 1.2fr 1fr; gap: 2.5rem; align-items: center; position: relative; }
+.groups h2 { font-size: clamp(3rem, 7vw, 5.8rem); }
+.groups h2 em { font-style: normal; color: var(--mustard); }
+.groups p { font-size: 1.15rem; max-width: 42ch; margin: 1.2rem 0 1.8rem; }
+.tape { position: absolute; top: -18px; left: 2.5rem; background: var(--mustard); color: var(--ink); font-family: var(--mono); font-size: 0.8rem; text-transform: uppercase; padding: 0.5rem 1rem; border: 2px solid var(--ink); transform: rotate(-3deg); }
+.price-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.pg { background: var(--cream); color: var(--ink); border: 2.5px solid var(--ink); border-radius: 50%; aspect-ratio: 1; display: grid; place-items: center; text-align: center; line-height: 1; box-shadow: 4px 4px 0 var(--ink); transition: transform var(--duration-fast) var(--ease-bounce); }
+.pg:nth-child(odd) { transform: rotate(-6deg); }
+.pg:nth-child(even) { transform: rotate(5deg); }
+.pg:hover { transform: rotate(0) scale(1.06); }
+.pg strong { display: block; font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 800; font-stretch: 75%; }
+.pg small { font-family: var(--mono); font-size: 0.7rem; text-transform: uppercase; }
+.pg:nth-child(2) { background: var(--mustard); }
+.pg:nth-child(3) { background: var(--tomato); color: var(--cream); }
+
+/* ---------- visit ---------- */
+.visit { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.1rem; }
+.box { border: 2.5px solid var(--ink); border-radius: 18px; padding: 1.5rem; background: var(--cream-2); }
+.box h3 { font-size: 1.8rem; margin-bottom: 0.9rem; }
+.box p { margin: 0; }
+.hours { display: grid; gap: 0.2rem; font-family: var(--mono); font-size: 0.85rem; }
+.hours div { display: flex; justify-content: space-between; gap: 0.5rem; padding: 0.25rem 0.4rem; border-radius: 6px; }
+.hours div.is-today { background: var(--ink); color: var(--mustard); }
+.box a { font-weight: 700; }
+.bye { padding: 4rem 0 3rem; border-top: 2.5px solid var(--ink); margin-top: 5rem; background: var(--tomato); color: var(--cream); }
+.bye__big { font-weight: 800; font-stretch: 75%; text-transform: uppercase; font-size: clamp(3.5rem, 12vw, 11rem); line-height: 0.85; }
+.bye__row { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-top: 2rem; }
+
+/* ---------- concept switcher ---------- */
+.concept-bar { position: fixed; left: 14px; bottom: 14px; z-index: 300; display: flex; align-items: center; gap: 0.25rem; padding: 0.3rem; border-radius: 999px; background: rgba(15, 15, 15, 0.88); color: #fff; font: 500 12px/1 system-ui, sans-serif; backdrop-filter: blur(8px); box-shadow: 0 6px 24px rgba(0,0,0,0.35); }
+.concept-bar a, .concept-bar span { padding: 0.55rem 0.75rem; border-radius: 999px; text-decoration: none; color: #fff; }
+.concept-bar a:hover { background: rgba(255,255,255,0.12); }
+.concept-bar span { opacity: 0.7; }
+
+/* ---------- responsive ---------- */
+@media (max-width: 1000px) {
+  .nav__links { display: none; }
+  .hero__grid, .rac__grid, .groups { grid-template-columns: 1fr; }
+  .posters { grid-template-columns: 1fr 1fr; }
+  .visit { grid-template-columns: 1fr; }
+  .stats__grid { grid-template-columns: 1fr 1fr; }
+  .stat:nth-child(2) { border-right: 0; }
+  .stat:nth-child(-n+2) { border-bottom: 2px dashed rgba(243, 233, 210, 0.3); }
+  .arch { max-width: 420px; margin-inline: auto; }
+  .spin-badge, .spin-badge__center { left: -10px; }
+}
+@media (max-width: 560px) {
+  .posters { grid-template-columns: 1fr; }
+  .poster { min-height: 0; }
+  .price-sticker { width: 110px; height: 110px; }
+  .price-sticker strong { font-size: 2.1rem; }
+  .spin-badge, .spin-badge__center { width: 116px; height: 116px; }
+  .photo { margin: 0 -14px 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .t-stagger-line, .reveal, .btn, .choice, .poster, .photo, .pg, .desc-swap, .t-learn-chevron, .t-learn-arm { transition: none !important; }
+  .marquee__track, .spin-badge { animation: none; }
+  .t-reel-strip { transition: none !important; }
+  .wheel { transform: none !important; }
+  html { scroll-behavior: auto; }
+}
+</style>
+</head>
+<body>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <span>Raclette</span><span>Fonduta</span><span>Polenta</span><span>Carbonada</span><span>Mont d'Or</span><span>Reblochonnade</span><span>Civet di cervo</span><span>Senza glutine</span>
+    <span>Raclette</span><span>Fonduta</span><span>Polenta</span><span>Carbonada</span><span>Mont d'Or</span><span>Reblochonnade</span><span>Civet di cervo</span><span>Senza glutine</span>
+  </div>
+</div>
+
+<header class="nav">
+  <div class="wrap nav__inner">
+    <a class="brand" href="#"><img src="assets/Logo-color.png" alt="" /><span>Praetoria</span></a>
+    <nav class="nav__links" aria-label="Principale">
+      <a href="#raclette">Raclette</a>
+      <a href="#menu">Menù</a>
+      <a href="#gruppi">Gruppi</a>
+      <a href="#visita">Dove siamo</a>
+    </nav>
+    <a class="btn btn--tomato" href="https://trattoriapraetoria.plateform.app/welcome" target="_blank" rel="noopener">Prenota</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap hero__grid">
+      <div>
+        <h1 class="t-stagger" data-stagger>
+          <span class="t-stagger-line t-stagger-line--1">Cucina di</span>
+          <span class="t-stagger-line t-stagger-line--2">montagna</span>
+          <span class="t-stagger-line t-stagger-line--3">in centro.</span>
+        </h1>
+        <p class="hero__sub reveal">Trattoria valdostana in Via Sant'Anselmo, Aosta. Formaggi che fondono, polenta che fuma e tavolate che non finiscono mai.</p>
+        <div class="hero__ctas reveal">
+          <a class="btn btn--tomato" href="https://trattoriapraetoria.plateform.app/welcome" target="_blank" rel="noopener">Prenota un tavolo</a>
+          <a class="btn btn--cream" href="#raclette">La Raclette →</a>
+        </div>
+      </div>
+      <div class="arch reveal">
+        <img class="arch__img" src="assets/risto-5.webp" alt="Le Cave: sala in pietra con volta a botte" />
+        <svg class="spin-badge" viewBox="0 0 150 150" aria-hidden="true">
+          <defs><path id="circ" d="M75 75 m-56 0 a56 56 0 1 1 112 0 a56 56 0 1 1 -112 0"/></defs>
+          <circle class="bg" cx="75" cy="75" r="72"/>
+          <text><textPath href="#circ">Senza glutine · AIC · dal 2017 · tutto il menù ·</textPath></text>
+        </svg>
+        <div class="spin-badge__center" aria-hidden="true">GF</div>
+        <div class="stamp">Dal 1989</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats" aria-label="La trattoria in numeri">
+    <div class="wrap stats__grid">
+      <div class="stat"><span class="stat__num t-reel" data-reel="120" aria-label="120"></span><span class="stat__label mono">coperti</span></div>
+      <div class="stat"><span class="stat__num t-reel" data-reel="5" aria-label="5"></span><span class="stat__label mono">sale su due livelli</span></div>
+      <div class="stat"><span class="stat__num t-reel" data-reel="55" aria-label="55"></span><span class="stat__label mono">posti nelle Cave</span></div>
+      <div class="stat"><span class="stat__num t-reel" data-reel="1989" aria-label="1989"></span><span class="stat__label mono">Trattoria Praetoria</span></div>
+    </div>
+  </section>
+
+  <section class="rac" id="raclette" data-rac data-variant="classica">
+    <div class="wrap rac__grid">
+      <div>
+        <h2 class="reveal"><span>Il piatto della casa</span>Raclette</h2>
+        <p class="rac__text reveal"><span class="desc-swap" data-desc>Formaggio Raclette classico a latte vaccino crudo, raschiato fuso direttamente nel piatto.</span></p>
+        <div class="choices reveal" role="group" aria-label="Scegli la Raclette">
+          <button class="choice" aria-pressed="true" data-variant="classica"><b>Classica</b><small>€28 / persona</small></button>
+          <button class="choice" aria-pressed="false" data-variant="fumee"><b>Fumée</b><small>€30 / persona</small></button>
+          <button class="choice" aria-pressed="false" data-variant="morbier"><b>Morbier</b><small>€32 / persona</small></button>
+        </div>
+        <ul class="with reveal"><li>Patate bollite</li><li>Sottaceti</li><li>Coppa</li><li>Speck al ginepro</li><li>Min. 2 persone</li></ul>
+        <a class="btn btn--tomato reveal" href="https://trattoriapraetoria.plateform.app/welcome" target="_blank" rel="noopener">Voglio la Raclette</a>
+      </div>
+      <div class="wheel-wrap reveal">
+        <svg class="wheel" viewBox="0 0 400 400" aria-hidden="true" data-wheel>
+          <defs><path id="ring" d="M200 200 m-150 0 a150 150 0 1 1 300 0 a150 150 0 1 1 -300 0"/></defs>
+          <circle class="rind" cx="200" cy="200" r="190" fill="#b07a3b" stroke="#1b1712" stroke-width="5"/>
+          <circle cx="200" cy="200" r="168" fill="#f6d585" stroke="#1b1712" stroke-width="4"/>
+          <text><textPath href="#ring">La Raclette · La Raclette · La Raclette · La Raclette ·</textPath></text>
+          <circle cx="200" cy="200" r="122" fill="#ffd36b" stroke="#1b1712" stroke-width="3"/>
+          <circle class="ash" cx="200" cy="200" r="70" fill="none" stroke="#2b2622" stroke-width="7" stroke-dasharray="2 10" stroke-linecap="round"/>
+          <g fill="#e2b04f" stroke="#1b1712" stroke-width="2"><circle cx="160" cy="150" r="10"/><circle cx="250" cy="170" r="7"/><circle cx="220" cy="250" r="12"/><circle cx="150" cy="235" r="6"/><circle cx="200" cy="200" r="5"/></g>
+          <path d="M200 200 L322 120 A146 146 0 0 1 344 210 Z" fill="#fff3c9" stroke="#1b1712" stroke-width="3"/>
+        </svg>
+        <div class="price-sticker"><div><strong data-price>€28</strong><small>a persona</small></div></div>
+        <span class="placeholder-tag">Grafica segnaposto · foto da aggiungere</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="menu">
+    <div class="wrap">
+      <div class="section__head">
+        <h2 class="reveal">Il menù</h2>
+        <a class="t-learn" href="#">Tutto il menù<span class="t-learn-chevron"><svg viewBox="0 0 16 16"><path class="t-learn-arm t-learn-arm-top" d="M6 4L10 8"/><path class="t-learn-arm t-learn-arm-bot" d="M10 8L6 12"/></svg></span></a>
+      </div>
+      <div class="posters">
+        <article class="poster poster--tomato reveal"><h3>Antipasti</h3><ul><li><span>Il Rösti</span><span>16</span></li><li><span>La Tartare</span><span>18</span></li><li><span>La Messata</span><span>18</span></li><li><span>Lumache (12)</span><span>18</span></li></ul><span class="mono">Lardo di Arnad · Fassona · lime</span></article>
+        <article class="poster poster--mustard reveal"><h3>Fromagerie</h3><ul><li><span>Raclette</span><span>28+</span></li><li><span>Mont d'Or</span><span>26</span></li><li><span>Reblochonnade</span><span>24</span></li><li><span>Chevrette</span><span>20</span></li></ul><span class="mono">Min. 2 persone</span></article>
+        <article class="poster poster--forest reveal"><h3>Tradizione</h3><ul><li><span>Carbonada</span><span>22</span></li><li><span>Cervo in civet</span><span>22</span></li><li><span>Fonduta</span><span>18</span></li><li><span>Polenta</span><span>16</span></li></ul><span class="mono">Con polenta Bramata e Taragna</span></article>
+        <article class="poster poster--sky reveal"><h3>Dessert</h3><ul><li><span>Il Classico</span><span>12</span></li><li><span>Eclissi</span><span>12</span></li><li><span>Crema di Cogne</span><span>9</span></li><li><span>Mascarpone</span><span>9</span></li></ul><span class="mono">Tutto anche senza glutine</span></article>
+      </div>
+      <div class="photos">
+        <figure class="photo reveal"><img src="assets/polenta.webp" alt="Polenta con civet" loading="lazy" /><figcaption>Polenta</figcaption></figure>
+        <figure class="photo reveal"><img src="assets/tagliere.webp" alt="Tagliere di formaggi" loading="lazy" /><figcaption>Tagliere</figcaption></figure>
+        <figure class="photo reveal"><img src="assets/food-1.webp" alt="Rösti con lardo" loading="lazy" /><figcaption>Rösti</figcaption></figure>
+        <figure class="photo reveal"><img src="assets/tartare.webp" alt="Tartare" loading="lazy" /><figcaption>Tartare</figcaption></figure>
+        <figure class="photo reveal"><img src="assets/tortino.webp" alt="Tortino al cioccolato" loading="lazy" /><figcaption>Il Classico</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="gruppi" style="padding-top:2rem">
+    <div class="wrap">
+      <div class="groups reveal">
+        <span class="tape">Menu Builder · in arrivo</span>
+        <div>
+          <h2>Gruppi?<br /><em>Ci pensiamo noi.</em></h2>
+          <p>Agenzie, scuole, matrimoni, cene aziendali: nelle Cave stanno fino a 55 persone. A breve potrete comporre il menù online e ricevere subito il preventivo.</p>
+          <a class="btn btn--mustard" href="mailto:trattoriapraetoria@gmail.com">Scrivici ora</a>
+        </div>
+        <div class="price-grid" aria-label="Prezzi dei menù per gruppi">
+          <div class="pg"><div><strong>€35</strong><small>Menù 1</small></div></div>
+          <div class="pg"><div><strong>€40</strong><small>Menù 2</small></div></div>
+          <div class="pg"><div><strong>€42</strong><small>Menù 3</small></div></div>
+          <div class="pg"><div><strong>€45</strong><small>Degustazione</small></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="visita" style="padding-top:1rem">
+    <div class="wrap">
+      <div class="section__head"><h2 class="reveal">Dove siamo</h2></div>
+      <div class="visit">
+        <div class="box reveal">
+          <h3>Orari</h3>
+          <div class="hours" data-hours>
+            <div data-day="1"><span>LUN</span><span>12–14:30 · 19–22:30</span></div>
+            <div data-day="2"><span>MAR</span><span>12–14:30 · 19–22:30</span></div>
+            <div data-day="3"><span>MER</span><span>12–14:30</span></div>
+            <div data-day="4"><span>GIO</span><span>CHIUSO</span></div>
+            <div data-day="5"><span>VEN</span><span>12–14:30 · 19–22:30</span></div>
+            <div data-day="6"><span>SAB</span><span>12–14:30 · 19–22:30</span></div>
+            <div data-day="0"><span>DOM</span><span>12–14:30 · 19–22:30</span></div>
+          </div>
+        </div>
+        <div class="box reveal" style="background:var(--sky)">
+          <h3>Indirizzo</h3>
+          <p style="font-size:1.25rem;font-weight:700">Via Sant'Anselmo 9<br />11100 Aosta</p>
+          <p style="margin-top:1rem">Tra la Porta Praetoria e l'Arco di Augusto.</p>
+          <p style="margin-top:1.2rem"><a class="t-learn" href="https://maps.google.com/?q=45.738125,7.323667" target="_blank" rel="noopener">Portami lì<span class="t-learn-chevron"><svg viewBox="0 0 16 16"><path class="t-learn-arm t-learn-arm-top" d="M6 4L10 8"/><path class="t-learn-arm t-learn-arm-bot" d="M10 8L6 12"/></svg></span></a></p>
+        </div>
+        <div class="box reveal" style="background:var(--mustard)">
+          <h3>Contatti</h3>
+          <p style="font-size:1.25rem;font-weight:700"><a href="tel:+393472951337">+39 347 295 1337</a></p>
+          <p style="margin-top:0.4rem"><a href="mailto:trattoriapraetoria@gmail.com">trattoriapraetoria@gmail.com</a></p>
+          <p style="margin-top:1.4rem"><a class="btn btn--tomato" href="https://trattoriapraetoria.plateform.app/welcome" target="_blank" rel="noopener">Prenota</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="bye">
+  <div class="wrap">
+    <div class="bye__big">Ci vediamo<br />a tavola.</div>
+    <div class="bye__row mono"><span>© Trattoria Praetoria · Aosta</span><span>Privacy · Cookie</span><span>IT · EN · FR</span></div>
+  </div>
+</footer>
+
+<nav class="concept-bar" aria-label="Concept navigation">
+  <a href="03-editoriale.html" aria-label="Previous concept">←</a><a href="index.html">All concepts</a><span>4 / 5 · Osteria Grafica</span><a href="05-il-tavolo.html" aria-label="Next concept">→</a>
+</nav>
+
+<script>
+const reduce = matchMedia("(prefers-reduced-motion: reduce)");
+requestAnimationFrame(() => document.querySelectorAll("[data-stagger]").forEach((b) => b.classList.add("is-shown")));
+const io = new IntersectionObserver((entries) => entries.forEach((e) => {
+  if (e.isIntersecting) { e.target.classList.add("is-shown"); io.unobserve(e.target); }
+}), { threshold: 0.12 });
+document.querySelectorAll(".reveal").forEach((el, i) => { el.style.transitionDelay = (i % 4) * 40 + "ms"; io.observe(el); });
+
+// spinning counters (transitions.dev #26, simplified: no SVG motion blur)
+function buildReel(el) {
+  const digits = el.dataset.reel.split("");
+  el.innerHTML = "";
+  return digits.map((d) => {
+    const col = document.createElement("span"); col.className = "t-reel-col";
+    const strip = document.createElement("span"); strip.className = "t-reel-strip";
+    for (let i = 0; i < 30; i++) { const c = document.createElement("span"); c.className = "t-reel-digit"; c.textContent = i % 10; strip.appendChild(c); }
+    col.appendChild(strip); el.appendChild(col);
+    return { strip, target: 20 + Number(d) };
+  });
+}
+const reelIO = new IntersectionObserver((entries) => entries.forEach((e) => {
+  if (!e.isIntersecting) return;
+  reelIO.unobserve(e.target);
+  const cols = buildReel(e.target);
+  const cs = getComputedStyle(document.documentElement);
+  const dur = cs.getPropertyValue("--reel-dur").trim(), ease = cs.getPropertyValue("--reel-ease").trim();
+  const stag = parseFloat(cs.getPropertyValue("--reel-stagger")) || 90;
+  cols.forEach(({ strip, target }, i) => {
+    if (reduce.matches) { strip.style.transform = `translateY(-${target}em)`; return; }
+    strip.style.transition = `transform ${dur} ${ease} ${i * stag}ms`;
+    requestAnimationFrame(() => requestAnimationFrame(() => { strip.style.transform = `translateY(-${target}em)`; }));
+  });
+}), { threshold: 0.4 });
+document.querySelectorAll("[data-reel]").forEach((el) => reelIO.observe(el));
+
+// wheel rotates with scroll
+const wheel = document.querySelector("[data-wheel]");
+addEventListener("scroll", () => { if (!reduce.matches) wheel.style.setProperty("--rot", (scrollY * 0.12).toFixed(1) + "deg"); }, { passive: true });
+
+// raclette choices
+const variants = {
+  classica: { price: "€28", desc: "Formaggio Raclette classico a latte vaccino crudo, raschiato fuso direttamente nel piatto." },
+  fumee: { price: "€30", desc: "Raclette affumicata con legno di ginepro e faggio. Profumo di baita, latte vaccino crudo." },
+  morbier: { price: "€32", desc: "Il Morbier e la sua inconfondibile linea di carbone vegetale. Latte vaccino crudo." }
+};
+const rac = document.querySelector("[data-rac]");
+function swapText(el, text) {
+  el.classList.add("is-out");
+  setTimeout(() => { el.textContent = text; el.classList.remove("is-out"); el.classList.add("is-in"); void el.offsetWidth; el.classList.remove("is-in"); }, 150);
+}
+document.querySelectorAll(".choice").forEach((btn) => btn.addEventListener("click", () => {
+  document.querySelectorAll(".choice").forEach((b) => b.setAttribute("aria-pressed", String(b === btn)));
+  const v = variants[btn.dataset.variant];
+  rac.dataset.variant = btn.dataset.variant;
+  document.querySelector("[data-price]").textContent = v.price;
+  swapText(document.querySelector("[data-desc]"), v.desc);
+}));
+
+document.querySelector(`[data-hours] [data-day="${new Date().getDay()}"]`)?.classList.add("is-today");
+</script>
+</body>
+</html>
