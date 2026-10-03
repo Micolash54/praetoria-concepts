@@ -245,6 +245,36 @@ h2 { font-size: clamp(1.8rem, 3.6vw, 2.6rem); }
 .opt span { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.2rem; line-height: 1.35; }
 .opt em { position: absolute; top: 0.85rem; right: 1rem; font-style: normal; font-family: var(--serif); font-size: 1.1rem; }
 .opt[aria-checked="true"] { border-color: var(--ink); background: var(--fontina-soft); }
+.hint { color: var(--muted); font-size: 0.88rem; margin: -0.3rem 0 1rem; }
+.presets { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.2rem; }
+.presets button { font: inherit; font-size: 0.85rem; font-weight: 600; padding: 0.5rem 0.9rem; border-radius: 999px; border: 1.5px solid var(--line); background: var(--bg); color: var(--ink); cursor: pointer; transition: border-color var(--duration-fast) var(--ease-smooth-out), background-color var(--duration-fast) var(--ease-smooth-out), transform var(--duration-quick) var(--ease-smooth-out); }
+.presets button:active { transform: scale(0.96); }
+.presets button[aria-pressed="true"] { border-color: var(--ink); background: var(--ink); color: var(--bg); }
+.course + .course { margin-top: 1.1rem; }
+.course__head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5rem; }
+.course__head h4 { margin: 0; font-family: var(--serif); font-weight: 500; font-size: 1.1rem; }
+.course__head span { font-size: 0.78rem; color: var(--muted); }
+.picks { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+.pick { position: relative; display: grid; grid-template-columns: 22px 1fr auto; gap: 0.7rem; align-items: start; text-align: left; font: inherit; color: inherit; cursor: pointer; border: 1.5px solid var(--line); background: var(--bg); border-radius: var(--r-sm); padding: 0.75rem 0.85rem; transition: border-color var(--duration-fast) var(--ease-smooth-out), background-color var(--duration-fast) var(--ease-smooth-out), transform var(--duration-quick) var(--ease-smooth-out); }
+.pick:active { transform: scale(0.98); }
+.pick i { width: 22px; height: 22px; border-radius: 7px; border: 1.5px solid #cbbfae; display: grid; place-items: center; font-style: normal; font-size: 0.8rem; color: transparent; transition: background-color var(--duration-fast) var(--ease-smooth-out), border-color var(--duration-fast) var(--ease-smooth-out), color var(--duration-fast) var(--ease-smooth-out); }
+.pick b { font-size: 0.92rem; font-weight: 600; line-height: 1.3; }
+.pick small { display: block; font-size: 0.76rem; color: var(--muted); margin-top: 0.15rem; }
+.pick em { font-style: normal; font-family: var(--serif); font-size: 1rem; }
+.pick[aria-checked="true"] { border-color: var(--ink); background: var(--fontina-soft); }
+.pick[aria-checked="true"] i { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+.running { display: flex; justify-content: space-between; align-items: baseline; margin-top: 1.2rem; padding-top: 0.9rem; border-top: 1px dashed var(--line); color: var(--muted); font-size: 0.9rem; }
+.running b { font-family: var(--serif); font-size: 1.4rem; color: var(--ink); font-weight: 500; }
+.field { font: inherit; border: 1.5px solid var(--line); border-radius: var(--r-sm); padding: 0.55rem 0.7rem; background: var(--bg); color: var(--ink); }
+.field:focus { outline: none; border-color: var(--wood); }
+.card-preview { background: var(--bg); color: var(--ink); border-radius: var(--r-sm); padding: 1.1rem 1.2rem; margin: 0.9rem 0 0.8rem; text-align: center; }
+.card-preview .cp-title { font-family: var(--serif); font-size: 1.15rem; }
+.card-preview .cp-sub { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 0.5rem; }
+.card-preview .cp-course { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--wood); margin-top: 0.7rem; }
+.card-preview .cp-dish { font-family: var(--serif); font-style: italic; font-size: 0.95rem; line-height: 1.35; }
+.card-preview .cp-empty { color: var(--muted); font-size: 0.88rem; padding: 0.8rem 0; }
+.card-preview .cp-match { display: inline-block; margin-top: 0.8rem; font-size: 0.72rem; font-weight: 700; padding: 0.25rem 0.6rem; border-radius: 999px; background: var(--fontina); }
+.summary .btn[disabled] { opacity: 0.45; cursor: not-allowed; }
 .row { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 0.8rem 0; border-top: 1px solid var(--line); }
 .row:first-of-type { border-top: 0; padding-top: 0; }
 .row label, .row .lbl { font-weight: 600; }
@@ -320,7 +350,10 @@ footer { padding: 2.5rem 0 7rem; color: var(--muted); font-size: 0.85rem; }
   .top .btn { display: none; }
   .actionbar { display: flex; }
   .concept-bar { bottom: 92px; }
-  .dishes, .opts { grid-template-columns: 1fr; }
+  .dishes, .opts, .picks { grid-template-columns: 1fr; }
+  .row:has(.field) { flex-wrap: wrap; }
+  .running { position: sticky; bottom: 142px; z-index: 5; margin: 1.2rem -0.4rem 0; padding: 0.7rem 1rem; border: 0; border-radius: 999px; background: var(--ink); color: rgba(250, 246, 240, 0.75); box-shadow: 0 8px 24px rgba(0,0,0,0.25); }
+  .running b { color: var(--bg); }
   .sheet__art { padding: 1.4rem 2rem 0.5rem; }
   .sheet__body { padding: 1.4rem; }
   .feature__art { min-height: 220px; }
@@ -328,7 +361,7 @@ footer { padding: 2.5rem 0 7rem; color: var(--muted); font-size: 0.85rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .t-stagger-line, .reveal, .t-tabs-pill, .t-tab, .t-modal, .overlay__backdrop, .t-toast, .opt, .dish, .quick a, .room img { transition: none !important; }
+  .t-stagger-line, .reveal, .t-tabs-pill, .t-tab, .t-modal, .overlay__backdrop, .t-toast, .opt, .pick, .pick i, .presets button, .dish, .quick a, .room img { transition: none !important; }
   .t-digit-group .t-digit, .t-toggle-thumb, .dishes, .status.is-open i { animation: none !important; }
   html { scroll-behavior: auto; }
 }
@@ -430,20 +463,26 @@ footer { padding: 2.5rem 0 7rem; color: var(--muted); font-size: 0.85rem; }
   </section>
 
   <section class="sec" id="gruppi" style="padding-top:1rem">
-    <div class="sec__head"><div><span class="soon">Anteprima · Menu Builder</span><h2>Gruppi e agenzie</h2><p>Componete il menù del gruppo e ricevete subito il totale. Questa è una demo funzionante del futuro strumento.</p></div></div>
+    <div class="sec__head"><div><span class="soon">Anteprima · Menu Builder</span><h2>Gruppi e agenzie</h2><p>Componete il menù del gruppo piatto per piatto e ricevete subito il totale. Questa è una demo funzionante del futuro strumento.</p></div></div>
     <div class="builder">
       <div>
         <div class="panel">
-          <h3>1 · Scegli il menù</h3>
-          <div class="opts" role="radiogroup" aria-label="Menù per gruppi" data-opts>
-            <button class="opt" role="radio" aria-checked="true" data-menu="Menù 1" data-price="35"><b>Menù 1</b><span>Flan con fonduta · Gnocchi alla bava · Dessert</span><em>€35</em></button>
-            <button class="opt" role="radio" aria-checked="false" data-menu="Menù 2" data-price="40"><b>Menù 2</b><span>Flan · Maccheroni al ragù di selvaggina · Carbonada e polenta · Dessert</span><em>€40</em></button>
-            <button class="opt" role="radio" aria-checked="false" data-menu="Menù 3" data-price="42"><b>Menù 3</b><span>Cavolo rosso e Bleu d'Aoste · Polenta · Scaloppina · Dessert</span><em>€42</em></button>
-            <button class="opt" role="radio" aria-checked="false" data-menu="Degustazione" data-price="45"><b>Degustazione</b><span>Formaggi, lardo e mocetta · Polenta · Salsiccia · Civet · Carbonada · Dessert</span><em>€45</em></button>
+          <h3>1 · Componi il menù</h3>
+          <p class="hint">Partite da una nostra proposta e modificatela, oppure scegliete piatto per piatto. Potete scegliere più piatti nella stessa portata: verranno serviti al centro da condividere.</p>
+          <div class="presets" role="group" aria-label="Parti da una proposta" data-presets>
+            <button type="button" data-preset="Menù 1">Menù 1</button>
+            <button type="button" data-preset="Menù 2">Menù 2</button>
+            <button type="button" data-preset="Menù 3">Menù 3</button>
+            <button type="button" data-preset="Degustazione">Degustazione</button>
+            <button type="button" data-preset="">Da zero</button>
           </div>
+          <div data-courses></div>
+          <div class="running"><span>A persona</span><b data-running>€0</b></div>
         </div>
         <div class="panel">
           <h3>2 · Dettagli</h3>
+          <div class="row"><label for="gdate">Data<small>Pranzo o cena, lo confermiamo noi</small></label>
+            <input type="date" id="gdate" class="field" /></div>
           <div class="row"><span class="lbl">Numero di ospiti<small>Le Cave ospitano fino a 55 persone</small></span>
             <div class="stepper"><button type="button" data-step="-1" aria-label="Meno ospiti">−</button><output data-guests>25</output><button type="button" data-step="1" aria-label="Più ospiti">+</button></div></div>
           <div class="row"><span class="lbl" id="wine-lbl">Calice di vino e caffè<small>+€5 a persona</small></span>
@@ -453,14 +492,14 @@ footer { padding: 2.5rem 0 7rem; color: var(--muted); font-size: 0.85rem; }
         </div>
       </div>
       <aside class="summary" aria-live="polite">
-        <h3>Riepilogo</h3>
-        <div class="line"><span>Menù</span><span data-sum-menu>Menù 1</span></div>
+        <h3>Anteprima del menù</h3>
+        <div class="card-preview" data-preview></div>
         <div class="line"><span>Ospiti</span><span data-sum-guests>25</span></div>
-        <div class="line"><span>A persona</span><span data-sum-pp>€35</span></div>
+        <div class="line"><span>A persona</span><span data-sum-pp>€0</span></div>
         <div class="line"><span>Inclusi</span><span>Acqua, pane e coperto</span></div>
         <div class="total"><span>Totale stimato</span><span class="t-digit-group" data-total></span></div>
         <button class="btn btn--fontina" data-send>Invia richiesta con anteprima</button>
-        <small>Nella versione finale riceverete un PDF del menù e noi la vostra richiesta via email.</small>
+        <small data-send-hint>Prezzi dei singoli piatti indicativi. Nella versione finale riceverete un PDF del menù e noi la vostra richiesta via email.</small>
       </aside>
     </div>
   </section>
@@ -684,21 +723,105 @@ snapRacTabs = initTabs(document.querySelector('[data-tabs="rac"]'), (tab) => {
 });
 
 // ---- builder demo ----
-const state = { menu: "Menù 1", price: 35, guests: 25, wine: false };
+// Dishes from the 2026 group menus. Per-dish prices are placeholders for the restaurant to set.
+const COURSES = [
+  { id: "antipasti", label: "Antipasti", dishes: [
+    { id: "flan", name: "Flan di verdure con fonduta", price: 11 },
+    { id: "cavolo", name: "Insalata di cavolo rosso con fonduta di Bleu d'Aoste", price: 11 },
+    { id: "tris", name: "Tris di formaggi valdostani, Lardo e Mocetta", note: "Fontina, Toma, Bleu d'Aoste", price: 14 },
+  ] },
+  { id: "primi", label: "Primi", dishes: [
+    { id: "gnocchi", name: "Gnocchi alla bava", price: 17 },
+    { id: "maccheroni", name: "Maccheroni al ragù di selvaggina", price: 15 },
+    { id: "polenta", name: "Polenta alla valdostana", price: 9 },
+  ] },
+  { id: "secondi", label: "Secondi", dishes: [
+    { id: "carbonada", name: "Carbonada valdostana con polenta", note: "Piatto unico", price: 16 },
+    { id: "scaloppina", name: "Scaloppina alla valdostana", price: 15 },
+    { id: "salsiccia", name: "Salsiccia in umido", price: 11 },
+    { id: "civet", name: "Civet di selvaggina", price: 16 },
+  ] },
+  { id: "dessert", label: "Dessert", dishes: [
+    { id: "dessert", name: "Dessert della casa", price: 7 },
+  ] },
+];
+const PRESETS = {
+  "Menù 1": { price: 35, dishes: ["flan", "gnocchi", "dessert"] },
+  "Menù 2": { price: 40, dishes: ["flan", "maccheroni", "carbonada", "dessert"] },
+  "Menù 3": { price: 42, dishes: ["cavolo", "polenta", "scaloppina", "dessert"] },
+  "Degustazione": { price: 45, dishes: ["tris", "polenta", "salsiccia", "civet", "carbonada", "dessert"] },
+};
+const DISH = Object.fromEntries(COURSES.flatMap((c) => c.dishes.map((d) => [d.id, { ...d, course: c.id }])));
+const state = { picked: new Set(PRESETS["Menù 1"].dishes), guests: 25, wine: false };
 const fmt = (n) => "€" + String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+const esc = (s) => s.replace(/'/g, "&#39;");
+
+const coursesEl = document.querySelector("[data-courses]");
+coursesEl.innerHTML = COURSES.map((c) => `
+  <div class="course">
+    <div class="course__head"><h4>${c.label}</h4><span data-count="${c.id}"></span></div>
+    <div class="picks">${c.dishes.map((d) => `
+      <button type="button" class="pick" role="checkbox" aria-checked="false" data-dish="${d.id}">
+        <i aria-hidden="true">✓</i><span><b>${esc(d.name)}</b>${d.note ? `<small>${d.note}</small>` : ""}</span><em>${fmt(d.price)}</em>
+      </button>`).join("")}
+    </div>
+  </div>`).join("");
+
+// A selection identical to one of our proposals keeps that proposal's price
+function matchedPreset() {
+  return Object.keys(PRESETS).find((k) => {
+    const p = PRESETS[k].dishes;
+    return p.length === state.picked.size && p.every((id) => state.picked.has(id));
+  });
+}
+function perPerson() {
+  const match = matchedPreset();
+  const food = match ? PRESETS[match].price : [...state.picked].reduce((sum, id) => sum + DISH[id].price, 0);
+  return { match, food, pp: food ? food + (state.wine ? 5 : 0) : 0 };
+}
+
 const totalEl = document.querySelector("[data-total]");
+const sendBtn = document.querySelector("[data-send]");
 function update(animate = true) {
-  const pp = state.price + (state.wine ? 5 : 0);
-  document.querySelector("[data-sum-menu]").textContent = state.menu;
+  const { match, food, pp } = perPerson();
+  document.querySelectorAll("[data-dish]").forEach((b) => b.setAttribute("aria-checked", String(state.picked.has(b.dataset.dish))));
+  document.querySelectorAll("[data-preset]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.preset ? b.dataset.preset === match : state.picked.size === 0)));
+  COURSES.forEach((c) => {
+    const n = c.dishes.filter((d) => state.picked.has(d.id)).length;
+    document.querySelector(`[data-count="${c.id}"]`).textContent = n === 0 ? "Facoltativo" : n === 1 ? "1 piatto" : `${n} piatti da condividere`;
+  });
+  document.querySelector("[data-running]").textContent = fmt(food);
+
+  const chosen = COURSES.map((c) => ({ label: c.label, dishes: c.dishes.filter((d) => state.picked.has(d.id)) })).filter((c) => c.dishes.length);
+  document.querySelector("[data-preview]").innerHTML = chosen.length
+    ? `<div class="cp-title">Il vostro menù</div><div class="cp-sub">Trattoria Praetoria · ${state.guests} ospiti</div>` +
+      chosen.map((c) => `<div class="cp-course">${c.label}</div>` + c.dishes.map((d) => `<div class="cp-dish">${esc(d.name)}</div>`).join("")).join("") +
+      (match ? `<span class="cp-match">Prezzo della proposta ${match}: ${fmt(PRESETS[match].price)}</span>` : "")
+    : `<div class="cp-empty">Scegliete i piatti a sinistra: il menù prende forma qui.</div>`;
+
+  const ready = chosen.length >= 2;
+  sendBtn.disabled = !ready;
+  document.querySelector("[data-send-hint]").textContent = ready
+    ? "Prezzi dei singoli piatti indicativi. Nella versione finale riceverete un PDF del menù e noi la vostra richiesta via email."
+    : "Scegliete piatti da almeno due portate per inviare la richiesta.";
   document.querySelector("[data-sum-guests]").textContent = state.guests;
   document.querySelector("[data-sum-pp]").textContent = fmt(pp) + (state.wine ? " (con vino e caffè)" : "");
   document.querySelector("[data-guests]").textContent = state.guests;
   const str = fmt(pp * state.guests);
+  if (totalEl.dataset.value === str) return;
+  totalEl.dataset.value = str;
   if (animate) setDigits(totalEl, str); else { totalEl.textContent = ""; setDigits(totalEl, str); totalEl.classList.remove("is-animating"); }
 }
-document.querySelectorAll("[data-opts] .opt").forEach((opt) => opt.addEventListener("click", () => {
-  document.querySelectorAll("[data-opts] .opt").forEach((o) => o.setAttribute("aria-checked", String(o === opt)));
-  state.menu = opt.dataset.menu; state.price = Number(opt.dataset.price); update();
+coursesEl.addEventListener("click", (e) => {
+  const b = e.target.closest("[data-dish]");
+  if (!b) return;
+  const id = b.dataset.dish;
+  state.picked.has(id) ? state.picked.delete(id) : state.picked.add(id);
+  update();
+});
+document.querySelectorAll("[data-preset]").forEach((b) => b.addEventListener("click", () => {
+  state.picked = new Set(b.dataset.preset ? PRESETS[b.dataset.preset].dishes : []);
+  update();
 }));
 document.querySelectorAll("[data-step]").forEach((b) => b.addEventListener("click", () => {
   state.guests = Math.min(120, Math.max(10, state.guests + Number(b.dataset.step))); update();
@@ -716,8 +839,9 @@ update(false);
 // ---- toast (#22) ----
 const toast = document.querySelector("[data-toast]");
 let toastTimer;
-document.querySelector("[data-send]").addEventListener("click", () => {
-  document.querySelector("[data-toast-text]").textContent = `Demo: ${state.menu} per ${state.guests} ospiti, ${fmt((state.price + (state.wine ? 5 : 0)) * state.guests)}. Qui partirà la mail con il PDF.`;
+sendBtn.addEventListener("click", () => {
+  const { pp } = perPerson();
+  document.querySelector("[data-toast-text]").textContent = `Demo: menù di ${state.picked.size} piatti per ${state.guests} ospiti, ${fmt(pp * state.guests)}. Qui partirà la mail con il PDF del menù.`;
   toast.classList.add("is-open");
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => toast.classList.remove("is-open"), 3800);
