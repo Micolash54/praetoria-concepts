@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="robots" content="noindex, nofollow" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Trattoria Praetoria · 3 redesign concepts</title>
+<title>Trattoria Praetoria · 4 redesign concepts</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,800&family=Newsreader:opsz,wght@6..72,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -25,7 +25,7 @@ header img { width: 84px; }
 h1 { font-family: "Fraunces", serif; font-weight: 400; font-size: clamp(2.2rem, 5vw, 3.6rem); line-height: 1.05; margin: 0; }
 h1 em { color: #7a2e22; }
 header p { margin: 0.6rem 0 0; color: var(--muted); max-width: 70ch; }
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.2rem; padding-bottom: 2rem; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.2rem; padding-bottom: 2rem; }
 .card { display: flex; flex-direction: column; text-decoration: none; color: inherit; background: #fff; border: 1px solid var(--line); border-radius: 20px; overflow: hidden; transition: transform var(--duration-fast) var(--ease-smooth-out), box-shadow var(--duration-fast) var(--ease-smooth-out);
   opacity: 0; translate: 0 var(--distance-medium); filter: blur(var(--blur-medium)); animation: in var(--duration-very-slow) var(--ease-smooth-out) forwards; }
 .card:nth-child(2) { animation-delay: 40ms; } .card:nth-child(3) { animation-delay: 80ms; } .card:nth-child(4) { animation-delay: 120ms; } .card:nth-child(5) { animation-delay: 160ms; }
@@ -48,6 +48,10 @@ header p { margin: 0.6rem 0 0; color: var(--muted); max-width: 70ch; }
 .c4 .name { font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; font-stretch: 75%; text-transform: uppercase; font-size: 2.6rem; }
 .c5 { background: linear-gradient(135deg, #faf6f0, #f8ecd2); color: #221d18; border-bottom: 1px solid var(--line); }
 .c5 .name { font-family: "Newsreader", serif; }
+.c6 { background: linear-gradient(180deg, #f2ede4 0 30%, #141210 30% 100%); color: #ece5d8; }
+.c6 .name { font-family: "Fraunces", serif; font-weight: 400; }
+.c6 .name em { color: #d4bc8a; }
+.c6 .num { color: #1d1a17; }
 .notes { border-top: 1px solid var(--line); padding: 2rem 0 4rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; color: var(--muted); font-size: 0.92rem; }
 .notes h2 { font-family: "Fraunces", serif; font-weight: 400; font-size: 1.3rem; color: var(--ink); margin: 0 0 0.4rem; }
 .notes p { margin: 0; }
@@ -59,8 +63,8 @@ header p { margin: 0.6rem 0 0; color: var(--muted); max-width: 70ch; }
   <header>
     <img src="assets/Logo-color.png" alt="Trattoria Praetoria" />
     <div>
-      <h1>Three directions for the new <em>Praetoria</em></h1>
-      <p>Each concept is a complete, clickable homepage built with your real content (Spring 2026 menu, group menus, the history of the house). All three include the Raclette showcase, a Groups / Menu Builder preview and transitions.dev motion. Try them on your phone too. Page copy is in Italian, like the live site.</p>
+      <h1>Four directions for the new <em>Praetoria</em></h1>
+      <p>Each concept is a complete, clickable homepage built with your real content (Spring 2026 menu, group menus, the history of the house). All four include the Raclette showcase, a Groups / Menu Builder preview and transitions.dev motion. Try them on your phone too. Page copy is in Italian, like the live site.</p>
     </div>
   </header>
 
@@ -86,6 +90,14 @@ header p { margin: 0.6rem 0 0; color: var(--muted); max-width: 70ch; }
       <div class="body">
         <p>Mobile-first and app-like: live "open now" status, sticky action bar on phones, tabbed menu and a working Menu Builder demo.</p>
         <ul class="facts"><li><b>Font:</b> Newsreader + Plus Jakarta Sans</li><li><b>Raclette:</b> feature card that opens a modal</li><li><b>Best for:</b> everyday UX and the Menu Builder foundation</li></ul>
+        <span class="open">Open concept →</span>
+      </div>
+    </a>
+    <a class="card" href="06-pietra-chiara.html">
+      <div class="swatch c6"><div class="dots"><i style="background:#f2ede4"></i><i style="background:#141210"></i><i style="background:#a8874e"></i><i style="background:#d4bc8a"></i></div><span class="num">04</span><span class="name">Pietra <em>Chiara</em> <span class="rec">New</span></span></div>
+      <div class="body">
+        <p>Il Tavolo's clean, easy layout dressed in Pietra e Fuoco's stone: light limestone pages, dark candlelit bands, brass details and the history of the house.</p>
+        <ul class="facts"><li><b>Font:</b> Fraunces + Inter</li><li><b>Raclette:</b> dark candlelit band + variants pop-up</li><li><b>Best for:</b> elegance and rusticity with the full Menu Builder</li></ul>
         <span class="open">Open concept →</span>
       </div>
     </a>
