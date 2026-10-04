@@ -4,10 +4,10 @@
 <meta charset="utf-8" />
 <meta name="robots" content="noindex, nofollow" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>Concept 4 · Pietra Chiara — Trattoria Praetoria</title>
+<title>Pietra Chiara — Trattoria Praetoria</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <style>
 /* ---------- transitions.dev motion tokens ---------- */
 :root {
@@ -366,106 +366,144 @@ footer { padding: 2.5rem 0 7rem; color: var(--muted); font-size: 0.85rem; }
   html { scroll-behavior: auto; }
 }
 
-/* ================= Pietra Chiara: Il Tavolo's clarity + Pietra e Fuoco's stone ================= */
+/* ================= Pietra Chiara v2 =================
+   One soft-rounded shape language + WCAG AA contrast.
+   Radius scale: --r-xs 8 (tags) · --r-sm 12 (buttons, inputs, tabs, options) · --r 16 (cards) · --r-lg 22 (feature blocks, hero)
+   Nested elements follow the concentric rule: inner radius = outer radius - padding. */
 :root {
-  --bg: #f2ede4; --card: #fbf8f3; --sand: #e8dfd0; --wood: #8a6d3f;
+  --bg: #f2ede4; --card: #fbf8f3; --sand: #e8dfd0;
+  --wood: #7a5e2e;            /* brass for text & icons: 5.2:1 on --bg */
   --sage: #6e765f; --sage-soft: #e7e6dc;
-  --fontina: #a8874e; --fontina-soft: #efe5d1;
-  --ink: #1d1a17; --muted: #756b60; --line: #e0d6c6;
-  --night: #141210; --night-2: #1c1916; --cream: #ece5d8; --champagne: #d4bc8a;
+  --fontina: #a8874e;         /* decorative brass: lines, dots, large fills only */
+  --fontina-soft: #efe5d1;
+  --ink: #1d1a17; --muted: #665c51; /* 5.6:1 on --bg */
+  --line: #e0d6c6;
+  --night: #141210; --night-2: #1c1916; --cream: #ece5d8; --champagne: #e2c995;
   --serif: "Fraunces", Georgia, serif; --sans: "Inter", system-ui, sans-serif;
-  --r: 10px; --r-sm: 6px;
+  --r-xs: 8px; --r-sm: 12px; --r: 16px; --r-lg: 22px;
   --shadow: 0 1px 2px rgba(29, 26, 23, 0.05), 0 12px 30px -18px rgba(29, 26, 23, 0.28);
-  --tabs-pill-bg: #1d1a17; --tabs-text-active: #ece5d8;
+  --tabs-bar-bg: #e8dfd0; --tabs-pill-bg: #1d1a17; --tabs-text-active: #ece5d8; --tabs-text-muted: #5c5248;
 }
-h1, h2 { font-weight: 300; letter-spacing: -0.015em; }
-h3 { font-weight: 400; }
-h1 em, h2 em { font-style: italic; color: var(--fontina); }
-.kicker { display: block; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.26em; text-transform: uppercase; color: var(--fontina); margin: 0 0 0.9rem; }
-.sec__head h2 { font-size: clamp(2rem, 4.2vw, 3.1rem); }
-.btn { border-radius: 2px; height: 50px; padding: 0 1.5rem; font-size: 0.74rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; }
-.top .btn { height: 40px; font-size: 0.7rem; }
-.btn--fontina { background: var(--fontina); color: #15120d; }
-.btn--fontina:hover { background: #bd9c62; }
-.btn--light { box-shadow: none; border: 1px solid var(--line); }
-.top { background: rgba(242, 237, 228, 0.88); }
-.top__nav a { border-radius: 2px; font-weight: 500; }
-.status { border-radius: 2px; background: var(--card); }
-.link { color: var(--wood); }
+body { font-size: 17px; line-height: 1.6; }
+h1, h2 { font-weight: 400; letter-spacing: -0.01em; font-optical-sizing: auto; }
+h3 { font-weight: 500; }
+h1 em, h2 em { font-style: italic; color: var(--wood); }
+.kicker { display: block; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--wood); margin: 0 0 0.8rem; }
+.sec__head h2 { font-size: clamp(2rem, 4.2vw, 3rem); }
+.sec__head p { color: var(--muted); }
 
-/* hero: the Cave by candlelight */
-.hero__card { min-height: clamp(480px, 76vh, 700px); border-radius: var(--r); }
+/* controls: same 12px radius everywhere, sentence case for readability */
+.btn { border-radius: var(--r-sm); height: 50px; padding: 0 1.4rem; font-size: 0.98rem; font-weight: 600; letter-spacing: 0; text-transform: none; }
+.top .btn { height: 42px; font-size: 0.92rem; }
+.btn--fontina { background: var(--fontina); color: #15120d; }
+.btn--fontina:hover { background: #b8965c; }
+.btn--light { box-shadow: none; border: 1px solid var(--line); }
+.btn:focus-visible, .t-tab:focus-visible, .pick:focus-visible, .presets button:focus-visible, .quick a:focus-visible { outline: 2px solid var(--wood); outline-offset: 2px; }
+.top { background: rgba(242, 237, 228, 0.92); }
+.top__nav a { border-radius: var(--r-sm); font-weight: 500; color: #4f463d; }
+.status { border-radius: var(--r-sm); background: var(--card); color: var(--ink); }
+.link { color: var(--wood); }
+.quick a { border-radius: var(--r-sm); font-weight: 500; }
+.quick svg, .contact-list svg { stroke: var(--wood); }
+
+/* hero: candlelit Cave with a real scrim behind the text */
+.hero__card { min-height: clamp(500px, 78vh, 720px); border-radius: var(--r-lg); }
 .hero__card::after { background:
-  radial-gradient(60% 55% at 22% 85%, rgba(184, 151, 90, 0.16), transparent 70%),
-  linear-gradient(180deg, rgba(20, 18, 16, 0.35) 0%, rgba(20, 18, 16, 0.2) 38%, rgba(20, 18, 16, 0.92) 100%); }
-.hero__body { padding: clamp(1.6rem, 5vw, 3.4rem); }
-.hero__body .kicker { color: var(--champagne); }
-.hero__body h1 { font-size: clamp(2.8rem, 7.4vw, 5.8rem); line-height: 1.02; color: var(--cream); max-width: 14ch; }
+  linear-gradient(90deg, rgba(18, 16, 14, 0.86) 0%, rgba(18, 16, 14, 0.66) 42%, rgba(18, 16, 14, 0.18) 78%, rgba(18, 16, 14, 0.1) 100%),
+  linear-gradient(0deg, rgba(18, 16, 14, 0.7) 0%, rgba(18, 16, 14, 0) 45%); }
+.hero__body { padding: clamp(1.6rem, 5vw, 3.6rem); }
+.hero__body .kicker { color: var(--cream); opacity: 0.9; }
+.hero__body h1 { font-size: clamp(2.7rem, 6.6vw, 5.2rem); line-height: 1.04; color: #f6f1e8; max-width: 13ch; text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35); }
 .hero__body h1 em { color: var(--champagne); }
-.hero__body p { color: rgba(236, 229, 216, 0.82); font-size: 1.05rem; margin: 1.1rem 0 1.8rem; }
-.hero__ctas .btn--light { background: transparent; color: var(--cream); border-color: rgba(236, 229, 216, 0.35); }
-.hero__ctas .btn--light:hover { background: rgba(236, 229, 216, 0.08); }
-.quick a { border-radius: 2px; font-weight: 500; }
+.hero__body p { color: rgba(246, 241, 232, 0.92); font-size: 1.12rem; line-height: 1.6; max-width: 44ch; margin: 1.1rem 0 1.9rem; }
+.hero__ctas .btn--light { background: rgba(246, 241, 232, 0.1); color: #f6f1e8; border-color: rgba(246, 241, 232, 0.4); backdrop-filter: blur(6px); }
+.hero__ctas .btn--light:hover { background: rgba(246, 241, 232, 0.18); }
 
 /* story timeline */
 .story { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(2rem, 6vw, 5rem); align-items: center; }
-.story .lead { color: var(--muted); max-width: 50ch; margin: 1rem 0 2.4rem; }
+.story .lead { color: var(--muted); max-width: 50ch; margin: 1rem 0 2.4rem; font-size: 1.05rem; }
 .timeline { list-style: none; margin: 0; padding: 0; position: relative; }
 .timeline::before { content: ""; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: linear-gradient(var(--fontina), var(--line)); }
 .timeline li { position: relative; padding: 0 0 2rem 2.4rem; }
 .timeline li:last-child { padding-bottom: 0; }
-.timeline li::before { content: ""; position: absolute; left: 0; top: 6px; width: 13px; height: 13px; border-radius: 50%; background: var(--bg); border: 1.5px solid var(--fontina); }
-.timeline .yr { font-family: var(--serif); font-style: italic; font-weight: 300; font-size: 1.6rem; color: var(--fontina); line-height: 1; }
-.timeline h3 { font-size: 1.25rem; margin: 0.35rem 0 0.2rem; }
-.timeline p { margin: 0; color: var(--muted); font-size: 0.95rem; }
-.story__photo { margin: 0; position: relative; border-radius: var(--r); overflow: hidden; aspect-ratio: 4 / 5; box-shadow: var(--shadow); }
+.timeline li::before { content: ""; position: absolute; left: 0; top: 7px; width: 13px; height: 13px; border-radius: 50%; background: var(--bg); border: 2px solid var(--fontina); }
+.timeline .yr { font-family: var(--serif); font-style: italic; font-size: 1.55rem; color: var(--wood); line-height: 1; }
+.timeline h3 { font-size: 1.25rem; margin: 0.4rem 0 0.2rem; }
+.timeline p { margin: 0; color: var(--muted); font-size: 0.98rem; }
+.story__photo { margin: 0; position: relative; border-radius: var(--r-lg); overflow: hidden; aspect-ratio: 4 / 5; box-shadow: var(--shadow); }
 .story__photo img { width: 100%; height: 100%; object-fit: cover; }
-.story__photo figcaption { position: absolute; left: 1rem; bottom: 1rem; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cream); background: rgba(20, 18, 16, 0.6); backdrop-filter: blur(6px); padding: 0.45rem 0.7rem; border-radius: 2px; }
+.story__photo figcaption { position: absolute; left: 12px; bottom: 12px; font-size: 0.8rem; font-weight: 500; color: #f6f1e8; background: rgba(20, 18, 16, 0.72); backdrop-filter: blur(6px); padding: 0.45rem 0.8rem; border-radius: calc(var(--r-lg) - 12px); }
 
 /* dark stone band (Raclette) */
 .band { position: relative; margin-inline: calc(50% - 50vw); padding: clamp(3.5rem, 8vw, 6rem) calc(50vw - 50%); color: var(--cream);
   background-color: var(--night);
   background-image: radial-gradient(60% 70% at 30% 60%, rgba(184, 151, 90, 0.10), transparent 70%), url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 0.95 0 0 0 0 0.85 0 0 0 0.06 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
-.band .feature { background: var(--night-2); border-color: rgba(236, 229, 216, 0.1); box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.6); }
+.band .feature { background: var(--night-2); border-color: rgba(236, 229, 216, 0.1); border-radius: var(--r-lg); box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.6); }
 .band .feature__art, .sheet__art { background: radial-gradient(55% 50% at 50% 72%, rgba(230, 190, 120, 0.22), transparent 75%), #171512; }
-.band .feature h2 { color: var(--cream); }
-.band .feature p, .band .meta div { color: #a19888; }
-.band .meta strong { color: var(--cream); font-weight: 300; }
-.band .pill { background: rgba(184, 151, 90, 0.1); color: var(--champagne); border: 1px solid rgba(184, 151, 90, 0.3); }
+.band .feature h2 { color: #f6f1e8; }
+.band .feature p, .band .meta div { color: #b3a999; }
+.band .meta strong { color: #f6f1e8; font-weight: 400; }
+.band .pill { background: rgba(226, 201, 149, 0.1); color: var(--champagne); border: 1px solid rgba(226, 201, 149, 0.3); }
 .band .btn--dark { background: var(--champagne); color: #15120d; }
-.band .btn--dark:hover { background: #e2cfa6; }
-.band .btn--light { background: transparent; color: var(--cream); border-color: rgba(236, 229, 216, 0.25); }
-.ph { background: rgba(0, 0, 0, 0.45); color: var(--champagne); border-radius: 2px; letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.62rem; }
-.pill { border-radius: 2px; }
-.sheet { border-radius: var(--r); }
-.sheet__close { border-radius: 2px; }
+.band .btn--dark:hover { background: #ecd8ad; }
+.band .btn--light { background: transparent; color: #f6f1e8; border-color: rgba(236, 229, 216, 0.3); }
+.ph { background: rgba(0, 0, 0, 0.5); color: var(--champagne); border-radius: var(--r-xs); font-size: 0.72rem; }
+.pill { border-radius: var(--r-xs); color: var(--wood); }
+.sheet { border-radius: var(--r-lg); }
+.sheet__close { border-radius: var(--r-sm); }
+.serves li { border-radius: var(--r-xs); }
 
-/* menu, rooms, builder, info */
+/* menu */
+#menu { padding-top: clamp(2.8rem, 6vw, 4.5rem) !important; }
 .menu-bar { background: linear-gradient(var(--bg) 75%, rgba(242, 237, 228, 0)); }
+.t-tabs { border-radius: calc(var(--r-sm) + 3px); }
+.t-tab, .t-tabs-pill { border-radius: var(--r-sm); }
+.dish { border-radius: var(--r); padding: 1.1rem 1.2rem; }
 .dish h3 { font-size: 1.15rem; }
-.dish .p { font-weight: 300; }
-.gf, .serves li { border-radius: 2px; }
-.room figcaption { background: rgba(20, 18, 16, 0.7); color: var(--cream); border-radius: 4px; }
-.room figcaption span { color: #b9ae9e; }
-.summary { background-color: var(--night); background-image: radial-gradient(70% 50% at 50% 0%, rgba(184, 151, 90, 0.12), transparent 70%); }
+.dish p { color: var(--muted); font-size: 0.95rem; }
+.gf { border-radius: var(--r-xs); color: #3f4b36; }
+.menu-note { color: var(--muted); }
+
+/* rooms */
+.room { margin: 0; border-radius: var(--r-lg); }
+.room figcaption { left: 10px; right: 10px; bottom: 10px; background: rgba(20, 18, 16, 0.74); color: #f6f1e8; border-radius: calc(var(--r-lg) - 10px); }
+.room figcaption span { color: #c9bfb0; }
+
+/* builder */
+.panel { border-radius: var(--r-lg); }
+.summary { border-radius: var(--r-lg); background-color: var(--night); background-image: radial-gradient(70% 50% at 50% 0%, rgba(184, 151, 90, 0.12), transparent 70%); }
+.summary .line { color: rgba(246, 241, 232, 0.85); }
+.summary small { color: rgba(246, 241, 232, 0.7); }
 .summary .btn--fontina { background: var(--champagne); }
-.card-preview { background: #f6f1e7; }
-.card-preview .cp-title { font-weight: 300; font-size: 1.3rem; }
-.card-preview .cp-match, .soon { border-radius: 2px; background: var(--fontina-soft); color: var(--wood); }
-.presets button, .stepper, .stepper button, .contact-list a, .opt, .pick, .hours li { border-radius: 4px; }
-.pick i { border-radius: 3px; }
-.actionbar { background: rgba(20, 18, 16, 0.95); border-radius: 10px; }
-.actionbar a { border-radius: 6px; }
+.card-preview { background: #f6f1e7; border-radius: calc(var(--r-lg) - 10px); }
+.card-preview .cp-sub, .card-preview .cp-empty { color: var(--muted); }
+.card-preview .cp-course { color: var(--wood); }
+.card-preview .cp-title { font-size: 1.3rem; }
+.card-preview .cp-match, .soon { border-radius: var(--r-xs); background: var(--fontina-soft); color: var(--wood); }
+.hint, .course__head span, .pick small, .row small { color: var(--muted); }
+.presets button, .opt, .pick, .contact-list a, .field, textarea { border-radius: var(--r-sm); }
+.presets button { border-radius: var(--r-sm); }
+.stepper { border-radius: var(--r-sm); }
+.stepper button { border-radius: calc(var(--r-sm) - 3px); }
+.pick i { border-radius: 6px; }
+.hours li { border-radius: var(--r-xs); color: var(--muted); }
+.map { border-radius: var(--r-lg); }
+
+/* chrome */
+.actionbar { background: rgba(20, 18, 16, 0.95); border-radius: 20px; }
+.actionbar a { border-radius: 14px; }
 .actionbar a.primary { background: var(--champagne); color: #15120d; }
-.t-toast { background: var(--night); }
-.t-toast i { background: var(--fontina); color: #15120d; }
-footer { background: var(--night); color: #8f8678; margin-top: 3rem; padding-top: 0; }
+.t-toast { background: var(--night); border-radius: var(--r); }
+.t-toast i { background: var(--champagne); color: #15120d; }
+footer { background: var(--night); color: #a39a8b; margin-top: 3rem; padding-top: 0; }
 .footer__inner { border-top: 0; padding-top: 2rem; }
 .footer__inner img { width: 120px; opacity: 0.9; }
-#menu { padding-top: clamp(2.8rem, 6vw, 4.5rem) !important; }
-.room { margin: 0; }
 @media (max-width: 960px) { .story { grid-template-columns: 1fr; } .story__photo { aspect-ratio: 16 / 10; } }
-@media (max-width: 680px) { .running { background: var(--night); } }
+@media (max-width: 680px) {
+  .running { background: var(--night); border-radius: var(--r); }
+  .hero__card::after { background: linear-gradient(0deg, rgba(18, 16, 14, 0.9) 0%, rgba(18, 16, 14, 0.72) 55%, rgba(18, 16, 14, 0.35) 100%); }
+  .hero__body .kicker { font-size: 0.72rem; }
+}
 </style>
 </head>
 <body>
@@ -707,7 +745,7 @@ footer { background: var(--night); color: #8f8678; margin-top: 3rem; padding-top
 </nav>
 
 <nav class="concept-bar" aria-label="Concept navigation">
-  <a href="05-il-tavolo.html" aria-label="Previous concept">←</a><a href="index.html">All concepts</a><span>4 / 4 · Pietra Chiara</span>
+  <a href="index.html">← Overview</a><span>Pietra Chiara · v2</span>
 </nav>
 
 <script>
