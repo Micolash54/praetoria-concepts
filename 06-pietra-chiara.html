@@ -505,6 +505,8 @@ footer { background: var(--night); color: #a39a8b; margin-top: 3rem; padding-top
 .menu-head h2 { font-size: clamp(2rem, 4.2vw, 3rem); }
 .menu-foot { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-top: 1.4rem; }
 .menu-foot .menu-note { margin: 0; }
+.link--pdf { text-decoration: underline; text-underline-offset: 5px; text-decoration-thickness: 1px; }
+.link--pdf:hover { text-decoration-thickness: 2px; }
 .menu-pdf svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .menu-pdf { background: var(--card); }
 .menu-pdf:hover { border-color: var(--wood); }
@@ -690,8 +692,7 @@ footer { background: var(--night); color: #a39a8b; margin-top: 3rem; padding-top
     </div>
     <div class="dishes" data-dishes role="tabpanel"></div>
     <div class="menu-foot">
-      <p class="menu-note">Avvisate il personale di sala per intolleranze o allergie.</p>
-      <a class="btn btn--light menu-pdf" href="#"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Scarica il menù completo in PDF</a>
+      <a class="link link--pdf" href="#">Vedi in PDF ↗</a>
     </div>
   </section>
 
@@ -857,7 +858,7 @@ footer { background: var(--night); color: #a39a8b; margin-top: 3rem; padding-top
 </nav>
 
 <nav class="concept-bar" aria-label="Concept navigation">
-  <a href="index.html">← Overview</a><span>Pietra Chiara · v6</span>
+  <a href="index.html">← Overview</a><span>Pietra Chiara · v7</span>
 </nav>
 
 <script>
