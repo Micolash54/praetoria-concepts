@@ -498,6 +498,62 @@ h1 em, h2 em { font-style: italic; color: var(--wood); }
 footer { background: var(--night); color: #a39a8b; margin-top: 3rem; padding-top: 0; }
 .footer__inner { border-top: 0; padding-top: 2rem; }
 .footer__inner img { width: 120px; opacity: 0.9; }
+/* ---------- rooms gallery (bento) ---------- */
+.gallery { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: clamp(150px, 17vw, 220px); gap: 12px; }
+.g-item { position: relative; padding: 0; border: 0; margin: 0; cursor: zoom-in; overflow: hidden; border-radius: var(--r-lg); background: var(--night); box-shadow: var(--shadow); text-align: left; }
+.g-item--hero { grid-column: span 2; grid-row: span 2; }
+.g-item img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.001); transition: transform 900ms var(--ease-smooth-out), filter var(--duration-slow) var(--ease-smooth-out); }
+.g-item::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(18, 16, 14, 0.78) 0%, rgba(18, 16, 14, 0.15) 42%, rgba(18, 16, 14, 0) 60%); pointer-events: none; }
+.g-cap { position: absolute; left: 16px; right: 56px; bottom: 14px; z-index: 1; color: #f6f1e8; }
+.g-cap b { display: block; font-family: var(--serif); font-weight: 500; font-size: 1.15rem; line-height: 1.2; }
+.g-item--hero .g-cap { left: 22px; bottom: 20px; }
+.g-item--hero .g-cap b { font-size: clamp(1.5rem, 2.6vw, 2rem); font-weight: 400; }
+.g-cap span { display: block; font-size: 0.85rem; color: rgba(246, 241, 232, 0.82); margin-top: 0.15rem; }
+.g-zoom { position: absolute; right: 12px; bottom: 12px; z-index: 1; width: 36px; height: 36px; border-radius: var(--r-sm); display: grid; place-items: center; background: rgba(246, 241, 232, 0.16); backdrop-filter: blur(8px); border: 1px solid rgba(246, 241, 232, 0.28); opacity: 0.85; transition: opacity var(--duration-fast) var(--ease-smooth-out), transform var(--duration-fast) var(--ease-smooth-out); }
+.g-zoom svg { width: 16px; height: 16px; fill: none; stroke: #f6f1e8; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.g-item:hover img { transform: scale(1.04); }
+.g-item:hover .g-zoom { opacity: 1; transform: scale(1.06); }
+.g-item:focus-visible { outline: 2px solid var(--wood); outline-offset: 3px; }
+
+/* lightbox (modal open/close tokens, transitions.dev #06) */
+.lb { position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; padding: clamp(0.8rem, 4vw, 3rem); pointer-events: none; }
+.lb:not(.is-open):not(.is-closing) { visibility: hidden; }
+.lb__backdrop { position: absolute; inset: 0; background: rgba(12, 11, 10, 0.92); backdrop-filter: blur(6px); opacity: 0; transition: opacity var(--modal-open-dur) var(--modal-ease); }
+.lb.is-open { pointer-events: auto; }
+.lb.is-open .lb__backdrop { opacity: 1; }
+.lb.is-closing .lb__backdrop { opacity: 0; transition-duration: var(--modal-close-dur); }
+.lb__stage { position: relative; margin: 0; max-width: min(1200px, 100%); display: grid; gap: 0.9rem; justify-items: center; transform: scale(var(--modal-scale)); opacity: 0; transition: transform var(--modal-open-dur) var(--modal-ease), opacity var(--modal-open-dur) var(--modal-ease); }
+.lb.is-open .lb__stage { transform: scale(1); opacity: 1; }
+.lb.is-closing .lb__stage { transform: scale(var(--modal-scale-close)); opacity: 0; transition-duration: var(--modal-close-dur); }
+.lb__stage img { max-width: 100%; max-height: calc(100svh - 9rem); width: auto; height: auto; border-radius: var(--r-lg); box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.7); transition: opacity var(--duration-fast) var(--ease-in-out); }
+.lb__stage img.is-swapping { opacity: 0; }
+.lb__cap { display: flex; align-items: baseline; gap: 0.7rem; flex-wrap: wrap; justify-content: center; color: #f6f1e8; text-align: center; }
+.lb__cap b { font-family: var(--serif); font-weight: 400; font-size: 1.3rem; }
+.lb__cap span { color: rgba(246, 241, 232, 0.75); font-size: 0.95rem; }
+.lb__cap em { font-style: normal; font-size: 0.8rem; color: rgba(246, 241, 232, 0.6); letter-spacing: 0.08em; }
+.lb__btn { position: absolute; z-index: 2; width: 48px; height: 48px; border-radius: var(--r-sm); border: 1px solid rgba(246, 241, 232, 0.22); background: rgba(246, 241, 232, 0.08); backdrop-filter: blur(8px); display: grid; place-items: center; cursor: pointer; transition: background-color var(--duration-fast) var(--ease-smooth-out); }
+.lb__btn:hover { background: rgba(246, 241, 232, 0.18); }
+.lb__btn:focus-visible { outline: 2px solid var(--champagne); outline-offset: 2px; }
+.lb__btn svg { width: 20px; height: 20px; fill: none; stroke: #f6f1e8; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.lb__close { top: 16px; right: 16px; }
+.lb__prev { left: 16px; top: 50%; translate: 0 -50%; }
+.lb__next { right: 16px; top: 50%; translate: 0 -50%; }
+.rac-min { font-family: var(--serif); font-style: italic; font-size: 1.15rem; color: var(--ink) !important; margin: 1.1rem 0 0.4rem !important; }
+@media (max-width: 760px) {
+  .gallery { grid-template-columns: 1fr 1fr; grid-auto-rows: 150px; gap: 10px; }
+  .g-item--hero { grid-column: 1 / -1; grid-row: span 2; }
+  .g-item:last-child { grid-column: 1 / -1; }
+  .g-cap { left: 12px; bottom: 10px; right: 48px; }
+  .g-cap b { font-size: 1rem; }
+  .g-cap span { display: none; }
+  .g-item--hero .g-cap span { display: block; }
+  .g-zoom { width: 32px; height: 32px; right: 8px; bottom: 8px; }
+  .lb__prev, .lb__next { top: auto; bottom: 18px; translate: none; }
+  .lb__stage img { max-height: calc(100svh - 12rem); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .g-item img, .g-zoom, .lb__backdrop, .lb__stage, .lb__stage img { transition: none !important; }
+}
 @media (max-width: 960px) { .story { grid-template-columns: 1fr; } .story__photo { aspect-ratio: 16 / 10; } }
 @media (max-width: 680px) {
   .running { background: var(--night); border-radius: var(--r); }
@@ -581,7 +637,7 @@ footer { background: var(--night); color: #a39a8b; margin-top: 3rem; padding-top
         <span class="pill">Il piatto della casa</span>
         <h2>La Raclette</h2>
         <p>Formaggio a latte crudo fuso e raschiato al tavolo, con patate, sottaceti e salumi. Tre forme da scegliere.</p>
-        <div class="meta"><div><strong>da €28</strong>a persona</div><div><strong>min. 2</strong>persone</div><div><strong>3</strong>varianti</div></div>
+        <div class="meta"><div><strong>3</strong>varianti</div><div><strong>min. 2</strong>persone</div><div><strong>Al tavolo</strong>raschiata e servita</div></div>
         <div style="display:flex;gap:0.6rem;flex-wrap:wrap">
           <button class="btn btn--dark" data-open-modal>Scopri le varianti</button>
           <a class="btn btn--light" href="https://trattoriapraetoria.plateform.app/welcome" target="_blank" rel="noopener">Prenota</a>
@@ -607,22 +663,42 @@ footer { background: var(--night); color: #a39a8b; margin-top: 3rem; padding-top
       </div>
     </div>
     <div class="dishes" data-dishes role="tabpanel"></div>
-    <p class="menu-note">Coperto €3. Avvisate il personale di sala per intolleranze o allergie.</p>
+    <p class="menu-note">Avvisate il personale di sala per intolleranze o allergie.</p>
   </section>
 
   <section class="sec" id="sale" style="padding-top:1rem">
-    <div class="sec__head"><div><span class="kicker">Pietra, legno e lume</span><h2>Le sale</h2><p>Cinque ambienti su due livelli, 120 coperti</p></div></div>
-    <div class="rooms">
-      <figure class="room"><img src="assets/risto-2.webp" alt="" loading="lazy" /><figcaption><b>La Sala Grande</b><span>Travi a vista e arco</span></figcaption></figure>
-      <figure class="room"><img src="assets/risto-3.webp" alt="" loading="lazy" /><figcaption><b>La Sala degli Sci</b><span>Calda e luminosa</span></figcaption></figure>
-      <figure class="room"><img src="assets/risto-5.webp" alt="" loading="lazy" /><figcaption><b>Le Cave</b><span>Fino a 55 ospiti</span></figcaption></figure>
-      <figure class="room"><img src="assets/risto-4.webp" alt="" loading="lazy" /><figcaption><b>La Boiserie</b><span>Raccolta e tranquilla</span></figcaption></figure>
-      <figure class="room"><img src="assets/risto-6.webp" alt="" loading="lazy" /><figcaption><b>Le Cave · II</b><span>Pietra e torce</span></figcaption></figure>
+    <div class="sec__head"><div><span class="kicker">Pietra, legno e lume</span><h2>Le sale</h2><p>Cinque ambienti su due livelli, 120 coperti. Toccate una foto per ingrandirla.</p></div></div>
+    <div class="gallery" data-gallery>
+      <button type="button" class="g-item g-item--hero reveal" data-index="0" aria-label="Ingrandisci: Le Cave">
+        <img src="assets/risto-6.webp" alt="Le Cave, volte in pietra illuminate dalle torce" loading="lazy" />
+        <span class="g-cap"><b>Le Cave</b><span>Pietra e torce · fino a 55 ospiti</span></span>
+        <span class="g-zoom" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></span>
+      </button>
+      <button type="button" class="g-item reveal" data-index="1" aria-label="Ingrandisci: La Sala Grande">
+        <img src="assets/risto-2.webp" alt="La Sala Grande con travi a vista" loading="lazy" />
+        <span class="g-cap"><b>La Sala Grande</b><span>Travi a vista e arco</span></span>
+        <span class="g-zoom" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></span>
+      </button>
+      <button type="button" class="g-item reveal" data-index="2" aria-label="Ingrandisci: La Sala degli Sci">
+        <img src="assets/risto-3.webp" alt="La Sala degli Sci" loading="lazy" />
+        <span class="g-cap"><b>La Sala degli Sci</b><span>Calda e luminosa</span></span>
+        <span class="g-zoom" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></span>
+      </button>
+      <button type="button" class="g-item reveal" data-index="3" aria-label="Ingrandisci: La Boiserie">
+        <img src="assets/risto-4.webp" alt="La Boiserie" loading="lazy" />
+        <span class="g-cap"><b>La Boiserie</b><span>Raccolta e tranquilla</span></span>
+        <span class="g-zoom" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></span>
+      </button>
+      <button type="button" class="g-item reveal" data-index="4" aria-label="Ingrandisci: Le Cave, seconda sala">
+        <img src="assets/risto-5.webp" alt="Le Cave, seconda sala" loading="lazy" />
+        <span class="g-cap"><b>Le Cave · II</b><span>Volte e lume</span></span>
+        <span class="g-zoom" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></span>
+      </button>
     </div>
   </section>
 
   <section class="sec" id="gruppi" style="padding-top:1rem">
-    <div class="sec__head"><div><span class="soon">Anteprima · Menu Builder</span><h2>Gruppi e agenzie</h2><p>Componete il menù del gruppo piatto per piatto e ricevete subito il totale. Questa è una demo funzionante del futuro strumento.</p></div></div>
+    <div class="sec__head"><div><span class="soon">Anteprima · Menu Builder</span><h2>Gruppi e agenzie</h2><p>Componete il menù del gruppo piatto per piatto e inviateci la richiesta: vi risponderemo con il preventivo. Questa è una demo funzionante del futuro strumento.</p></div></div>
     <div class="builder">
       <div>
         <div class="panel">
@@ -636,7 +712,7 @@ footer { background: var(--night); color: #a39a8b; margin-top: 3rem; padding-top
             <button type="button" data-preset="">Da zero</button>
           </div>
           <div data-courses></div>
-          <div class="running"><span>A persona</span><b data-running>€0</b></div>
+          <div class="running"><span>Piatti scelti</span><b data-running>0</b></div>
         </div>
         <div class="panel">
           <h3>2 · Dettagli</h3>
@@ -644,7 +720,7 @@ footer { background: var(--night); color: #a39a8b; margin-top: 3rem; padding-top
             <input type="date" id="gdate" class="field" /></div>
           <div class="row"><span class="lbl">Numero di ospiti<small>Le Cave ospitano fino a 55 persone</small></span>
             <div class="stepper"><button type="button" data-step="-1" aria-label="Meno ospiti">−</button><output data-guests>25</output><button type="button" data-step="1" aria-label="Più ospiti">+</button></div></div>
-          <div class="row"><span class="lbl" id="wine-lbl">Calice di vino e caffè<small>+€5 a persona</small></span>
+          <div class="row"><span class="lbl" id="wine-lbl">Calice di vino e caffè<small>Da aggiungere al menù</small></span>
             <button class="t-toggle" role="switch" aria-checked="false" aria-labelledby="wine-lbl" data-on="false" data-wine><span class="t-toggle-thumb"></span></button></div>
           <div class="row" style="display:block"><label for="notes">Note, allergie, orario di arrivo</label>
             <textarea id="notes" placeholder="Es. 3 celiaci, 1 vegetariano, arrivo previsto alle 12:30…" style="margin-top:0.6rem"></textarea></div>
@@ -654,11 +730,11 @@ footer { background: var(--night); color: #a39a8b; margin-top: 3rem; padding-top
         <h3>Anteprima del menù</h3>
         <div class="card-preview" data-preview></div>
         <div class="line"><span>Ospiti</span><span data-sum-guests>25</span></div>
-        <div class="line"><span>A persona</span><span data-sum-pp>€0</span></div>
+        <div class="line"><span>Data</span><span data-sum-date>Da definire</span></div>
+        <div class="line"><span>Vino e caffè</span><span data-sum-wine>No</span></div>
         <div class="line"><span>Inclusi</span><span>Acqua, pane e coperto</span></div>
-        <div class="total"><span>Totale stimato</span><span class="t-digit-group" data-total></span></div>
-        <button class="btn btn--fontina" data-send>Invia richiesta con anteprima</button>
-        <small data-send-hint>Prezzi dei singoli piatti indicativi. Nella versione finale riceverete un PDF del menù e noi la vostra richiesta via email.</small>
+        <button class="btn btn--fontina" data-send>Richiedi il preventivo</button>
+        <small data-send-hint>Vi risponderemo con il preventivo. Nella versione finale riceverete anche il PDF del menù.</small>
       </aside>
     </div>
   </section>
@@ -726,13 +802,25 @@ footer { background: var(--night); color: #a39a8b; margin-top: 3rem; padding-top
           <button class="t-tab" role="tab" aria-selected="false" data-variant="fumee">Fumée</button>
           <button class="t-tab" role="tab" aria-selected="false" data-variant="morbier">Morbier</button>
         </div>
-        <div class="bigprice"><span class="t-digit-group" data-rac-price></span><small>a persona</small></div>
+        <p class="rac-min">Minimo 2 persone · servita al tavolo</p>
         <p data-rac-desc style="min-height:3em">Formaggio Raclette classico a latte vaccino crudo.</p>
         <ul class="serves"><li>Patate bollite</li><li>Sottaceti</li><li>Coppa</li><li>Speck al ginepro</li></ul>
         <a class="btn btn--dark" href="https://trattoriapraetoria.plateform.app/welcome" target="_blank" rel="noopener" style="width:100%">Prenota per la Raclette</a>
       </div>
     </div>
   </div>
+</div>
+
+<!-- Gallery lightbox -->
+<div class="lb" data-lb role="dialog" aria-modal="true" aria-label="Galleria delle sale" aria-hidden="true">
+  <div class="lb__backdrop" data-lb-close></div>
+  <figure class="lb__stage">
+    <img data-lb-img alt="" />
+    <figcaption class="lb__cap"><b data-lb-title></b><span data-lb-sub></span><em data-lb-count></em></figcaption>
+  </figure>
+  <button type="button" class="lb__btn lb__close" data-lb-close aria-label="Chiudi"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  <button type="button" class="lb__btn lb__prev" data-lb-prev aria-label="Foto precedente"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+  <button type="button" class="lb__btn lb__next" data-lb-next aria-label="Foto successiva"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
 </div>
 
 <div class="t-toast" role="status" data-toast><i>✓</i><span data-toast-text>Richiesta pronta</span></div>
@@ -745,7 +833,7 @@ footer { background: var(--night); color: #a39a8b; margin-top: 3rem; padding-top
 </nav>
 
 <nav class="concept-bar" aria-label="Concept navigation">
-  <a href="index.html">← Overview</a><span>Pietra Chiara · v2</span>
+  <a href="index.html">← Overview</a><span>Pietra Chiara · v3</span>
 </nav>
 
 <script>
@@ -817,7 +905,7 @@ const MENU = {
 };
 const dishesEl = document.querySelector("[data-dishes]");
 function renderMenu(cat, dir = 0) {
-  dishesEl.innerHTML = MENU[cat].map(([n, d, p]) => `<article class="dish"><h3>${n}</h3><span class="p">€${p}</span><p>${d}</p><span class="gf">Disponibile senza glutine</span></article>`).join("");
+  dishesEl.innerHTML = MENU[cat].map(([n, d, p]) => `<article class="dish"><h3>${n}</h3><p>${d}</p><span class="gf">Disponibile senza glutine</span></article>`).join("");
   dishesEl.classList.remove("from-right", "from-left");
   if (dir) { void dishesEl.offsetWidth; dishesEl.classList.add(dir > 0 ? "from-right" : "from-left"); }
 }
@@ -868,51 +956,45 @@ overlay.querySelectorAll("[data-close]").forEach((el) => el.addEventListener("cl
 addEventListener("keydown", (e) => { if (e.key === "Escape" && overlay.classList.contains("is-open")) closeModal(); });
 
 const RAC = {
-  classica: ["€28", "Formaggio Raclette classico a latte vaccino crudo."],
-  fumee: ["€30", "Affumicata con legno di ginepro e faggio, latte vaccino crudo."],
-  morbier: ["€32", "Morbier con la sua linea di carbone vegetale, latte vaccino crudo."]
+  classica: "Formaggio Raclette classico a latte vaccino crudo.",
+  fumee: "Affumicata con legno di ginepro e faggio, latte vaccino crudo.",
+  morbier: "Morbier con la sua linea di carbone vegetale, latte vaccino crudo."
 };
-const racPrice = document.querySelector("[data-rac-price]");
-setDigits(racPrice, "€28");
 snapRacTabs = initTabs(document.querySelector('[data-tabs="rac"]'), (tab) => {
-  const [p, d] = RAC[tab.dataset.variant];
   sheet.dataset.variant = tab.dataset.variant;
-  setDigits(racPrice, p);
-  document.querySelector("[data-rac-desc]").textContent = d;
+  document.querySelector("[data-rac-desc]").textContent = RAC[tab.dataset.variant];
 });
 
 // ---- builder demo ----
-// Dishes from the 2026 group menus. Per-dish prices are placeholders for the restaurant to set.
+// Dishes from the 2026 group menus. No prices on the site: the restaurant replies with a quote.
 const COURSES = [
   { id: "antipasti", label: "Antipasti", dishes: [
-    { id: "flan", name: "Flan di verdure con fonduta", price: 11 },
-    { id: "cavolo", name: "Insalata di cavolo rosso con fonduta di Bleu d'Aoste", price: 11 },
-    { id: "tris", name: "Tris di formaggi valdostani, Lardo e Mocetta", note: "Fontina, Toma, Bleu d'Aoste", price: 14 },
+    { id: "flan", name: "Flan di verdure con fonduta" },
+    { id: "cavolo", name: "Insalata di cavolo rosso con fonduta di Bleu d'Aoste" },
+    { id: "tris", name: "Tris di formaggi valdostani, Lardo e Mocetta", note: "Fontina, Toma, Bleu d'Aoste" },
   ] },
   { id: "primi", label: "Primi", dishes: [
-    { id: "gnocchi", name: "Gnocchi alla bava", price: 17 },
-    { id: "maccheroni", name: "Maccheroni al ragù di selvaggina", price: 15 },
-    { id: "polenta", name: "Polenta alla valdostana", price: 9 },
+    { id: "gnocchi", name: "Gnocchi alla bava" },
+    { id: "maccheroni", name: "Maccheroni al ragù di selvaggina" },
+    { id: "polenta", name: "Polenta alla valdostana" },
   ] },
   { id: "secondi", label: "Secondi", dishes: [
-    { id: "carbonada", name: "Carbonada valdostana con polenta", note: "Piatto unico", price: 16 },
-    { id: "scaloppina", name: "Scaloppina alla valdostana", price: 15 },
-    { id: "salsiccia", name: "Salsiccia in umido", price: 11 },
-    { id: "civet", name: "Civet di selvaggina", price: 16 },
+    { id: "carbonada", name: "Carbonada valdostana con polenta", note: "Piatto unico" },
+    { id: "scaloppina", name: "Scaloppina alla valdostana" },
+    { id: "salsiccia", name: "Salsiccia in umido" },
+    { id: "civet", name: "Civet di selvaggina" },
   ] },
   { id: "dessert", label: "Dessert", dishes: [
-    { id: "dessert", name: "Dessert della casa", price: 7 },
+    { id: "dessert", name: "Dessert della casa" },
   ] },
 ];
 const PRESETS = {
-  "Menù 1": { price: 35, dishes: ["flan", "gnocchi", "dessert"] },
-  "Menù 2": { price: 40, dishes: ["flan", "maccheroni", "carbonada", "dessert"] },
-  "Menù 3": { price: 42, dishes: ["cavolo", "polenta", "scaloppina", "dessert"] },
-  "Degustazione": { price: 45, dishes: ["tris", "polenta", "salsiccia", "civet", "carbonada", "dessert"] },
+  "Menù 1": ["flan", "gnocchi", "dessert"],
+  "Menù 2": ["flan", "maccheroni", "carbonada", "dessert"],
+  "Menù 3": ["cavolo", "polenta", "scaloppina", "dessert"],
+  "Degustazione": ["tris", "polenta", "salsiccia", "civet", "carbonada", "dessert"],
 };
-const DISH = Object.fromEntries(COURSES.flatMap((c) => c.dishes.map((d) => [d.id, { ...d, course: c.id }])));
-const state = { picked: new Set(PRESETS["Menù 1"].dishes), guests: 25, wine: false };
-const fmt = (n) => "€" + String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+const state = { picked: new Set(PRESETS["Menù 1"]), guests: 25, wine: false };
 const esc = (s) => s.replace(/'/g, "&#39;");
 
 const coursesEl = document.querySelector("[data-courses]");
@@ -921,55 +1003,48 @@ coursesEl.innerHTML = COURSES.map((c) => `
     <div class="course__head"><h4>${c.label}</h4><span data-count="${c.id}"></span></div>
     <div class="picks">${c.dishes.map((d) => `
       <button type="button" class="pick" role="checkbox" aria-checked="false" data-dish="${d.id}">
-        <i aria-hidden="true">✓</i><span><b>${esc(d.name)}</b>${d.note ? `<small>${d.note}</small>` : ""}</span><em>${fmt(d.price)}</em>
+        <i aria-hidden="true">✓</i><span><b>${esc(d.name)}</b>${d.note ? `<small>${d.note}</small>` : ""}</span>
       </button>`).join("")}
     </div>
   </div>`).join("");
 
-// A selection identical to one of our proposals keeps that proposal's price
 function matchedPreset() {
   return Object.keys(PRESETS).find((k) => {
-    const p = PRESETS[k].dishes;
+    const p = PRESETS[k];
     return p.length === state.picked.size && p.every((id) => state.picked.has(id));
   });
 }
-function perPerson() {
-  const match = matchedPreset();
-  const food = match ? PRESETS[match].price : [...state.picked].reduce((sum, id) => sum + DISH[id].price, 0);
-  return { match, food, pp: food ? food + (state.wine ? 5 : 0) : 0 };
-}
 
-const totalEl = document.querySelector("[data-total]");
 const sendBtn = document.querySelector("[data-send]");
-function update(animate = true) {
-  const { match, food, pp } = perPerson();
+const dateEl = document.querySelector("#gdate");
+const fmtDate = (v) => v ? new Date(v + "T12:00").toLocaleDateString("it-IT", { weekday: "short", day: "numeric", month: "long" }) : "Da definire";
+function update() {
+  const match = matchedPreset();
   document.querySelectorAll("[data-dish]").forEach((b) => b.setAttribute("aria-checked", String(state.picked.has(b.dataset.dish))));
   document.querySelectorAll("[data-preset]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.preset ? b.dataset.preset === match : state.picked.size === 0)));
   COURSES.forEach((c) => {
     const n = c.dishes.filter((d) => state.picked.has(d.id)).length;
     document.querySelector(`[data-count="${c.id}"]`).textContent = n === 0 ? "Facoltativo" : n === 1 ? "1 piatto" : `${n} piatti da condividere`;
   });
-  document.querySelector("[data-running]").textContent = fmt(food);
+  document.querySelector("[data-running]").textContent = state.picked.size;
 
   const chosen = COURSES.map((c) => ({ label: c.label, dishes: c.dishes.filter((d) => state.picked.has(d.id)) })).filter((c) => c.dishes.length);
   document.querySelector("[data-preview]").innerHTML = chosen.length
     ? `<div class="cp-title">Il vostro menù</div><div class="cp-sub">Trattoria Praetoria · ${state.guests} ospiti</div>` +
       chosen.map((c) => `<div class="cp-course">${c.label}</div>` + c.dishes.map((d) => `<div class="cp-dish">${esc(d.name)}</div>`).join("")).join("") +
-      (match ? `<span class="cp-match">Prezzo della proposta ${match}: ${fmt(PRESETS[match].price)}</span>` : "")
+      (state.wine ? `<div class="cp-course">Inclusi</div><div class="cp-dish">Calice di vino e caffè</div>` : "") +
+      (match ? `<span class="cp-match">Come la nostra proposta ${match}</span>` : "")
     : `<div class="cp-empty">Scegliete i piatti a sinistra: il menù prende forma qui.</div>`;
 
   const ready = chosen.length >= 2;
   sendBtn.disabled = !ready;
   document.querySelector("[data-send-hint]").textContent = ready
-    ? "Prezzi dei singoli piatti indicativi. Nella versione finale riceverete un PDF del menù e noi la vostra richiesta via email."
+    ? "Vi risponderemo con il preventivo. Nella versione finale riceverete anche il PDF del menù."
     : "Scegliete piatti da almeno due portate per inviare la richiesta.";
   document.querySelector("[data-sum-guests]").textContent = state.guests;
-  document.querySelector("[data-sum-pp]").textContent = fmt(pp) + (state.wine ? " (con vino e caffè)" : "");
+  document.querySelector("[data-sum-date]").textContent = fmtDate(dateEl.value);
+  document.querySelector("[data-sum-wine]").textContent = state.wine ? "Sì" : "No";
   document.querySelector("[data-guests]").textContent = state.guests;
-  const str = fmt(pp * state.guests);
-  if (totalEl.dataset.value === str) return;
-  totalEl.dataset.value = str;
-  if (animate) setDigits(totalEl, str); else { totalEl.textContent = ""; setDigits(totalEl, str); totalEl.classList.remove("is-animating"); }
 }
 coursesEl.addEventListener("click", (e) => {
   const b = e.target.closest("[data-dish]");
@@ -979,12 +1054,13 @@ coursesEl.addEventListener("click", (e) => {
   update();
 });
 document.querySelectorAll("[data-preset]").forEach((b) => b.addEventListener("click", () => {
-  state.picked = new Set(b.dataset.preset ? PRESETS[b.dataset.preset].dishes : []);
+  state.picked = new Set(b.dataset.preset ? PRESETS[b.dataset.preset] : []);
   update();
 }));
 document.querySelectorAll("[data-step]").forEach((b) => b.addEventListener("click", () => {
   state.guests = Math.min(120, Math.max(10, state.guests + Number(b.dataset.step))); update();
 }));
+dateEl.addEventListener("change", update);
 const wine = document.querySelector("[data-wine]");
 wine.addEventListener("click", () => {
   wine.classList.add("is-init");
@@ -993,17 +1069,79 @@ wine.addEventListener("click", () => {
   wine.setAttribute("aria-checked", String(state.wine));
   update();
 });
-update(false);
+update();
 
 // ---- toast (#22) ----
 const toast = document.querySelector("[data-toast]");
 let toastTimer;
 sendBtn.addEventListener("click", () => {
-  const { pp } = perPerson();
-  document.querySelector("[data-toast-text]").textContent = `Demo: menù di ${state.picked.size} piatti per ${state.guests} ospiti, ${fmt(pp * state.guests)}. Qui partirà la mail con il PDF del menù.`;
+  document.querySelector("[data-toast-text]").textContent = `Demo: richiesta per ${state.guests} ospiti, menù di ${state.picked.size} piatti. Qui partirà la mail con l'anteprima del menù.`;
   toast.classList.add("is-open");
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => toast.classList.remove("is-open"), 3800);
+});
+
+// ---- rooms gallery lightbox ----
+const lb = document.querySelector("[data-lb]");
+const lbImg = lb.querySelector("[data-lb-img]");
+const gItems = [...document.querySelectorAll("[data-gallery] .g-item")];
+const SLIDES = gItems.map((el) => ({
+  src: el.querySelector("img").getAttribute("src"),
+  alt: el.querySelector("img").alt,
+  title: el.querySelector(".g-cap b").textContent,
+  sub: el.querySelector(".g-cap span").textContent,
+}));
+let lbIndex = 0, lbOpener = null;
+function showSlide(i, animate) {
+  lbIndex = (i + SLIDES.length) % SLIDES.length;
+  const sl = SLIDES[lbIndex];
+  const apply = () => {
+    lbImg.src = sl.src; lbImg.alt = sl.alt;
+    lb.querySelector("[data-lb-title]").textContent = sl.title;
+    lb.querySelector("[data-lb-sub]").textContent = sl.sub;
+    lb.querySelector("[data-lb-count]").textContent = `${lbIndex + 1} / ${SLIDES.length}`;
+    lbImg.classList.remove("is-swapping");
+  };
+  if (!animate) return apply();
+  lbImg.classList.add("is-swapping");
+  setTimeout(apply, ms("--duration-quick", 150));
+}
+function openLb(i, opener) {
+  lbOpener = opener;
+  showSlide(i, false);
+  lb.classList.remove("is-closing");
+  lb.classList.add("is-open");
+  lb.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+  lb.querySelector(".lb__close").focus();
+}
+function closeLb() {
+  if (!lb.classList.contains("is-open")) return;
+  lb.classList.remove("is-open");
+  lb.classList.add("is-closing");
+  lb.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+  setTimeout(() => lb.classList.remove("is-closing"), ms("--modal-close-dur", 150));
+  lbOpener && lbOpener.focus();
+}
+gItems.forEach((el) => el.addEventListener("click", () => openLb(Number(el.dataset.index), el)));
+lb.querySelectorAll("[data-lb-close]").forEach((el) => el.addEventListener("click", closeLb));
+lb.querySelector("[data-lb-prev]").addEventListener("click", () => showSlide(lbIndex - 1, true));
+lb.querySelector("[data-lb-next]").addEventListener("click", () => showSlide(lbIndex + 1, true));
+addEventListener("keydown", (e) => {
+  if (!lb.classList.contains("is-open")) return;
+  if (e.key === "Escape") closeLb();
+  if (e.key === "ArrowLeft") showSlide(lbIndex - 1, true);
+  if (e.key === "ArrowRight") showSlide(lbIndex + 1, true);
+});
+// swipe on touch screens
+let touchX = null;
+lb.addEventListener("touchstart", (e) => { touchX = e.touches[0].clientX; }, { passive: true });
+lb.addEventListener("touchend", (e) => {
+  if (touchX === null) return;
+  const dx = e.changedTouches[0].clientX - touchX;
+  if (Math.abs(dx) > 45) showSlide(lbIndex + (dx < 0 ? 1 : -1), true);
+  touchX = null;
 });
 </script>
 </body>
