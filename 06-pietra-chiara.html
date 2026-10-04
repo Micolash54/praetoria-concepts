@@ -503,7 +503,7 @@ footer { background: var(--night); color: #a39a8b; margin-top: 3rem; padding-top
 .g-item { position: relative; padding: 0; border: 0; margin: 0; cursor: zoom-in; overflow: hidden; border-radius: var(--r-lg); background: var(--night); box-shadow: var(--shadow); text-align: left; }
 .g-item--hero { grid-column: span 2; grid-row: span 2; }
 .g-item img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.001); transition: transform 900ms var(--ease-smooth-out), filter var(--duration-slow) var(--ease-smooth-out); }
-.g-item::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(18, 16, 14, 0.78) 0%, rgba(18, 16, 14, 0.15) 42%, rgba(18, 16, 14, 0) 60%); pointer-events: none; }
+.g-item::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(18, 16, 14, 0.28) 0%, rgba(18, 16, 14, 0) 35%); pointer-events: none; }
 .g-cap { position: absolute; left: 16px; right: 56px; bottom: 14px; z-index: 1; color: #f6f1e8; }
 .g-cap b { display: block; font-family: var(--serif); font-weight: 500; font-size: 1.15rem; line-height: 1.2; }
 .g-item--hero .g-cap { left: 22px; bottom: 20px; }
@@ -580,7 +580,7 @@ footer { background: var(--night); color: #a39a8b; margin-top: 3rem; padding-top
 <main class="wrap">
   <section class="hero">
     <div class="hero__card">
-      <img src="assets/risto-6.webp" alt="Le Cave, volte in pietra illuminate dalle torce" />
+      <img src="assets/risto-6.webp" alt="Una delle sale della trattoria" />
       <div class="hero__body t-stagger" data-stagger>
         <span class="kicker t-stagger-line">Aosta · Via Sant'Anselmo 9 · dal 1989</span>
         <h1 class="t-stagger-line t-stagger-line--2">Cucina valdostana, <em>tra pietra e fuoco.</em></h1>
@@ -669,29 +669,24 @@ footer { background: var(--night); color: #a39a8b; margin-top: 3rem; padding-top
   <section class="sec" id="sale" style="padding-top:1rem">
     <div class="sec__head"><div><span class="kicker">Pietra, legno e lume</span><h2>Le sale</h2><p>Cinque ambienti su due livelli, 120 coperti. Toccate una foto per ingrandirla.</p></div></div>
     <div class="gallery" data-gallery>
-      <button type="button" class="g-item g-item--hero reveal" data-index="0" aria-label="Ingrandisci: Le Cave">
-        <img src="assets/risto-6.webp" alt="Le Cave, volte in pietra illuminate dalle torce" loading="lazy" />
-        <span class="g-cap"><b>Le Cave</b><span>Pietra e torce · fino a 55 ospiti</span></span>
+      <button type="button" class="g-item g-item--hero reveal" data-index="0" aria-label="Ingrandisci la foto 1 di 5">
+        <img src="assets/risto-6.webp" alt="Una delle sale della trattoria" loading="lazy" />
         <span class="g-zoom" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></span>
       </button>
-      <button type="button" class="g-item reveal" data-index="1" aria-label="Ingrandisci: La Sala Grande">
-        <img src="assets/risto-2.webp" alt="La Sala Grande con travi a vista" loading="lazy" />
-        <span class="g-cap"><b>La Sala Grande</b><span>Travi a vista e arco</span></span>
+      <button type="button" class="g-item reveal" data-index="1" aria-label="Ingrandisci la foto 2 di 5">
+        <img src="assets/risto-2.webp" alt="Una delle sale della trattoria" loading="lazy" />
         <span class="g-zoom" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></span>
       </button>
-      <button type="button" class="g-item reveal" data-index="2" aria-label="Ingrandisci: La Sala degli Sci">
-        <img src="assets/risto-3.webp" alt="La Sala degli Sci" loading="lazy" />
-        <span class="g-cap"><b>La Sala degli Sci</b><span>Calda e luminosa</span></span>
+      <button type="button" class="g-item reveal" data-index="2" aria-label="Ingrandisci la foto 3 di 5">
+        <img src="assets/risto-3.webp" alt="Una delle sale della trattoria" loading="lazy" />
         <span class="g-zoom" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></span>
       </button>
-      <button type="button" class="g-item reveal" data-index="3" aria-label="Ingrandisci: La Boiserie">
-        <img src="assets/risto-4.webp" alt="La Boiserie" loading="lazy" />
-        <span class="g-cap"><b>La Boiserie</b><span>Raccolta e tranquilla</span></span>
+      <button type="button" class="g-item reveal" data-index="3" aria-label="Ingrandisci la foto 4 di 5">
+        <img src="assets/risto-4.webp" alt="Una delle sale della trattoria" loading="lazy" />
         <span class="g-zoom" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></span>
       </button>
-      <button type="button" class="g-item reveal" data-index="4" aria-label="Ingrandisci: Le Cave, seconda sala">
-        <img src="assets/risto-5.webp" alt="Le Cave, seconda sala" loading="lazy" />
-        <span class="g-cap"><b>Le Cave · II</b><span>Volte e lume</span></span>
+      <button type="button" class="g-item reveal" data-index="4" aria-label="Ingrandisci la foto 5 di 5">
+        <img src="assets/risto-5.webp" alt="Una delle sale della trattoria" loading="lazy" />
         <span class="g-zoom" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></span>
       </button>
     </div>
@@ -816,7 +811,7 @@ footer { background: var(--night); color: #a39a8b; margin-top: 3rem; padding-top
   <div class="lb__backdrop" data-lb-close></div>
   <figure class="lb__stage">
     <img data-lb-img alt="" />
-    <figcaption class="lb__cap"><b data-lb-title></b><span data-lb-sub></span><em data-lb-count></em></figcaption>
+    <figcaption class="lb__cap"><em data-lb-count></em></figcaption>
   </figure>
   <button type="button" class="lb__btn lb__close" data-lb-close aria-label="Chiudi"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
   <button type="button" class="lb__btn lb__prev" data-lb-prev aria-label="Foto precedente"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
@@ -833,7 +828,7 @@ footer { background: var(--night); color: #a39a8b; margin-top: 3rem; padding-top
 </nav>
 
 <nav class="concept-bar" aria-label="Concept navigation">
-  <a href="index.html">← Overview</a><span>Pietra Chiara · v3</span>
+  <a href="index.html">← Overview</a><span>Pietra Chiara · v4</span>
 </nav>
 
 <script>
@@ -985,7 +980,7 @@ const COURSES = [
     { id: "civet", name: "Civet di selvaggina" },
   ] },
   { id: "dessert", label: "Dessert", dishes: [
-    { id: "dessert", name: "Dessert della casa" },
+    { id: "dessert", name: "Crema di Cogne" },
   ] },
 ];
 const PRESETS = {
@@ -1088,8 +1083,6 @@ const gItems = [...document.querySelectorAll("[data-gallery] .g-item")];
 const SLIDES = gItems.map((el) => ({
   src: el.querySelector("img").getAttribute("src"),
   alt: el.querySelector("img").alt,
-  title: el.querySelector(".g-cap b").textContent,
-  sub: el.querySelector(".g-cap span").textContent,
 }));
 let lbIndex = 0, lbOpener = null;
 function showSlide(i, animate) {
@@ -1097,8 +1090,6 @@ function showSlide(i, animate) {
   const sl = SLIDES[lbIndex];
   const apply = () => {
     lbImg.src = sl.src; lbImg.alt = sl.alt;
-    lb.querySelector("[data-lb-title]").textContent = sl.title;
-    lb.querySelector("[data-lb-sub]").textContent = sl.sub;
     lb.querySelector("[data-lb-count]").textContent = `${lbIndex + 1} / ${SLIDES.length}`;
     lbImg.classList.remove("is-swapping");
   };
