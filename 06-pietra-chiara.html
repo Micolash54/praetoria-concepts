@@ -519,6 +519,13 @@ footer { background: var(--night); color: #a39a8b; margin-top: 3rem; padding-top
   .gf-badge { width: 100%; }
   .menu-pdf { width: 100%; }
 }
+/* language switch */
+.lang { display: inline-flex; padding: 3px; gap: 2px; border-radius: var(--r-sm); background: var(--card); border: 1px solid var(--line); }
+.lang button { height: 26px; min-width: 36px; padding: 0 0.55rem; border: 0; border-radius: calc(var(--r-sm) - 3px); background: transparent; color: var(--muted); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; cursor: pointer; transition: background-color var(--duration-fast) var(--ease-smooth-out), color var(--duration-fast) var(--ease-smooth-out); }
+.lang button:hover { color: var(--ink); }
+.lang button[aria-pressed="true"] { background: var(--ink); color: var(--cream); }
+.lang button:focus-visible { outline: 2px solid var(--wood); outline-offset: 1px; }
+@media (max-width: 420px) { .top__right { gap: 0.4rem; } .status { padding: 0 0.6rem; font-size: 0.74rem; } .lang button { min-width: 32px; padding: 0 0.4rem; } }
 /* ---------- rooms gallery (bento) ---------- */
 .gallery { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: clamp(150px, 17vw, 220px); gap: 12px; }
 .g-item { position: relative; padding: 0; border: 0; margin: 0; cursor: zoom-in; overflow: hidden; border-radius: var(--r-lg); background: var(--night); box-shadow: var(--shadow); text-align: left; }
@@ -592,6 +599,10 @@ footer { background: var(--night); color: #a39a8b; margin-top: 3rem; padding-top
       <a href="#storia">Storia</a><a href="#raclette">Raclette</a><a href="#menu">Menù</a><a href="#sale">Sale</a><a href="#gruppi">Gruppi</a><a href="#info">Info</a>
     </nav>
     <div class="top__right">
+      <div class="lang" role="group" aria-label="Lingua">
+        <button type="button" data-lang="it" aria-pressed="true" lang="it">IT</button>
+        <button type="button" data-lang="en" aria-pressed="false" lang="en">EN</button>
+      </div>
       <span class="status" data-status><i></i><span data-status-label>Orari</span></span>
       <a class="btn btn--dark" href="https://trattoriapraetoria.plateform.app/welcome" target="_blank" rel="noopener">Prenota</a>
     </div>
@@ -796,7 +807,7 @@ footer { background: var(--night); color: #a39a8b; margin-top: 3rem; padding-top
 <footer>
   <div class="wrap footer__inner">
     <img src="assets/logo-text-white.png" alt="Trattoria Praetoria" /><span>© Trattoria Praetoria · Aosta · AIC Alimentazione Fuori Casa</span>
-    <span>Privacy · Cookie · IT / EN / FR</span>
+    <span>Privacy · Cookie</span>
   </div>
 </footer>
 
@@ -858,12 +869,141 @@ footer { background: var(--night); color: #a39a8b; margin-top: 3rem; padding-top
 </nav>
 
 <nav class="concept-bar" aria-label="Concept navigation">
-  <a href="index.html">← Overview</a><span>Pietra Chiara · v7</span>
+  <a href="index.html">← Overview</a><span>Pietra Chiara · v8</span>
 </nav>
 
 <script>
 const root = document.documentElement;
 const ms = (v, d) => parseFloat(getComputedStyle(root).getPropertyValue(v)) || d;
+
+// ---- i18n: Italian (default) + English ----
+// Keys are the exact Italian strings used on the page; T() returns the English text when lang === "en".
+let lang = "it";
+const EN = {
+  // navigation, header, shortcuts
+  "Principale": "Main", "Lingua": "Language", "Scorciatoie": "Shortcuts", "Azioni rapide": "Quick actions",
+  "Storia": "History", "Raclette": "Raclette", "Menù": "Menu", "Sale": "Rooms", "Gruppi": "Groups", "Info": "Info",
+  "Prenota": "Book", "Chiama": "Call", "Mappa": "Map",
+  "La Raclette": "Raclette", "Gruppi e agenzie": "Groups & agencies", "Dove siamo": "Find us",
+  // hero
+  "Una delle sale della trattoria": "One of the trattoria's dining rooms",
+  "Aosta · Via Sant'Anselmo 9 · dal 1989": "Aosta · Via Sant'Anselmo 9 · since 1989",
+  "Cucina valdostana,": "Aosta Valley cooking,", "tra pietra e fuoco.": "between stone and fire.",
+  "Nelle antiche cantine a due passi dalla Porta Praetoria: raclette, fonduta e carbonada, come si fanno qui da generazioni. Ogni piatto, anche senza glutine.":
+    "In the old cellars a few steps from Porta Praetoria: raclette, fonduta and carbonada, made here the way they have been for generations. Every dish, also gluten free.",
+  "Prenota un tavolo": "Book a table", "Vedi il menù": "See the menu",
+  // story
+  "La nostra storia": "Our story", "Un'osteria lungo la strada": "An inn along the road", "per le Alpi.": "to the Alps.",
+  "Sull'asse storico di Aosta, tra l'Arco di Augusto e la Porta Pretoriana, questa casa accoglie viaggiatori da oltre un secolo.":
+    "On Aosta's historic axis, between the Arch of Augustus and Porta Praetoria, this house has welcomed travellers for over a century.",
+  "Fine '800": "Late 1800s", "Locanda del Bue Rosso": "Locanda del Bue Rosso",
+  "Con le stalle per il cambio dei cavalli dei viaggiatori diretti oltre le Alpi.": "With stables for changing the horses of travellers heading over the Alps.",
+  "1930 – 1970": "1930 – 1970", "Locanda Gaia": "Locanda Gaia",
+  "Gestita dall'omonima famiglia, punto di ritrovo del Borgo di Sant'Orso per una bicchierata o una partita a carte.":
+    "Run by the family of the same name, a gathering place for the Sant'Orso quarter, for a glass of wine or a game of cards.",
+  "1989": "1989", "Trattoria Praetoria": "Trattoria Praetoria",
+  "In omaggio alla vicina Porta e all'antico nome della città, Augusta Praetoria Salassorum.":
+    "In homage to the nearby Gate and to the city's ancient name, Augusta Praetoria Salassorum.",
+  "Volte in pietra delle Cave": "Stone vaults of the Cave", "Le Cave · piano inferiore": "The Cave · lower level",
+  // raclette
+  "Illustrazione segnaposto": "Placeholder illustration", "Il piatto della casa": "The house signature",
+  "Formaggio a latte crudo fuso e raschiato al tavolo, con patate, sottaceti e salumi. Tre forme da scegliere.":
+    "Raw-milk cheese melted and scraped at the table, with potatoes, pickles and cured meats. Three kinds to choose from.",
+  "varianti": "varieties", "persone": "people", "Al tavolo": "At the table", "raschiata e servita": "scraped and served",
+  "Scopri le varianti": "Discover the varieties",
+  "Fromagerie · min. 2 persone": "Fromagerie · min. 2 people",
+  "Scegli la forma: la scaldiamo e la raschiamo fusa direttamente nel tuo piatto.": "Choose your wheel: we heat it and scrape it melted straight onto your plate.",
+  "Varianti": "Varieties", "Classica": "Classic", "Fumée": "Fumée", "Morbier": "Morbier",
+  "Minimo 2 persone · servita al tavolo": "Minimum 2 people · served at the table",
+  "Patate bollite": "Boiled potatoes", "Sottaceti": "Pickles", "Coppa": "Coppa", "Speck al ginepro": "Juniper speck",
+  "Prenota per la Raclette": "Book for the Raclette", "Chiudi": "Close",
+  "Formaggio Raclette classico a latte vaccino crudo.": "Classic Raclette cheese made from raw cow's milk.",
+  "Affumicata con legno di ginepro e faggio, latte vaccino crudo.": "Smoked over juniper and beech wood, raw cow's milk.",
+  "Morbier con la sua linea di carbone vegetale, latte vaccino crudo.": "Morbier with its line of vegetable ash, raw cow's milk.",
+  // menu
+  "Primavera 2026": "Spring 2026", "Il menù": "The menu",
+  "Tutto il menù anche senza glutine": "The whole menu also gluten free",
+  "Ogni piatto, su richiesta · Circuito AIC dal 2017": "Every dish, on request · AIC network since 2017",
+  "Cucina valdostana di stagione, con prodotti dei produttori locali.": "Seasonal Aosta Valley cooking, with ingredients from local producers.",
+  "Categorie": "Categories", "Antipasti": "Starters", "Primi": "First courses", "Tradizione": "Tradition", "Fromagerie": "Fromagerie",
+  "Secondi": "Mains", "Dessert": "Desserts", "Vedi in PDF ↗": "View as PDF ↗",
+  // rooms
+  "Pietra, legno e lume": "Stone, wood and candlelight", "Le sale": "The rooms",
+  "Cinque ambienti su due livelli, 120 coperti. Toccate una foto per ingrandirla.": "Five rooms on two levels, 120 seats. Tap a photo to enlarge it.",
+  "Ingrandisci la foto 1 di 5": "Enlarge photo 1 of 5", "Ingrandisci la foto 2 di 5": "Enlarge photo 2 of 5", "Ingrandisci la foto 3 di 5": "Enlarge photo 3 of 5",
+  "Ingrandisci la foto 4 di 5": "Enlarge photo 4 of 5", "Ingrandisci la foto 5 di 5": "Enlarge photo 5 of 5",
+  "Galleria delle sale": "Gallery of the rooms", "Foto precedente": "Previous photo", "Foto successiva": "Next photo",
+  // builder
+  "Anteprima · Menu Builder": "Preview · Menu Builder",
+  "Componete il menù del gruppo piatto per piatto e inviateci la richiesta: vi risponderemo con il preventivo. Questa è una demo funzionante del futuro strumento.":
+    "Build your group's menu dish by dish and send us your request: we will reply with a quote. This is a working demo of the future tool.",
+  "1 · Componi il menù": "1 · Build the menu",
+  "Partite da una nostra proposta e modificatela, oppure scegliete piatto per piatto. Potete scegliere più piatti nella stessa portata: verranno serviti al centro da condividere.":
+    "Start from one of our proposals and adjust it, or choose dish by dish. You can pick several dishes in the same course: they will be served in the middle, to share.",
+  "Parti da una proposta": "Start from a proposal", "Menù 1": "Menu 1", "Menù 2": "Menu 2", "Menù 3": "Menu 3",
+  "Degustazione": "Tasting menu", "Da zero": "From scratch", "Piatti scelti": "Dishes chosen",
+  "2 · Dettagli": "2 · Details", "Data": "Date", "Pranzo o cena, lo confermiamo noi": "Lunch or dinner, we will confirm",
+  "Numero di ospiti": "Number of guests", "Le Cave ospitano fino a 55 persone": "The Cave seats up to 55 people",
+  "Meno ospiti": "Fewer guests", "Più ospiti": "More guests",
+  "Calice di vino e caffè": "Glass of wine and coffee", "Da aggiungere al menù": "To add to the menu",
+  "Note, allergie, orario di arrivo": "Notes, allergies, arrival time",
+  "Es. 3 celiaci, 1 vegetariano, arrivo previsto alle 12:30…": "E.g. 3 coeliacs, 1 vegetarian, arriving around 12:30…",
+  "Anteprima del menù": "Menu preview", "Ospiti": "Guests", "Vino e caffè": "Wine and coffee", "Inclusi": "Included",
+  "Acqua, pane e coperto": "Water, bread and cover charge", "Richiedi il preventivo": "Request a quote",
+  "Da definire": "To be set", "No": "No", "Sì": "Yes",
+  "Vi risponderemo con il preventivo. Nella versione finale riceverete anche il PDF del menù.": "We will reply with a quote. In the final version you will also receive the menu as a PDF.",
+  "Scegliete piatti da almeno due portate per inviare la richiesta.": "Choose dishes from at least two courses to send your request.",
+  "Il vostro menù": "Your menu", "Scegliete i piatti: il menù prende forma qui.": "Choose your dishes: the menu takes shape here.",
+  "Come la nostra proposta": "Matches our proposal:", "Facoltativo": "Optional", "1 piatto": "1 dish", "piatti da condividere": "dishes to share", "ospiti": "guests",
+  "Richiesta pronta": "Request ready",
+  // builder dishes
+  "Flan di verdure con fonduta": "Vegetable flan with fonduta",
+  "Insalata di cavolo rosso con fonduta di Bleu d'Aoste": "Red cabbage salad with Bleu d'Aoste fondue",
+  "Tris di formaggi valdostani, Lardo e Mocetta": "Trio of Aosta Valley cheeses, lard and mocetta", "Fontina, Toma, Bleu d'Aoste": "Fontina, Toma, Bleu d'Aoste",
+  "Gnocchi alla bava": "Gnocchi alla bava", "Maccheroni al ragù di selvaggina": "Macaroni with game ragù", "Polenta alla valdostana": "Aosta Valley polenta",
+  "Carbonada valdostana con polenta": "Aosta Valley carbonada with polenta", "Piatto unico": "One-course meal",
+  "Scaloppina alla valdostana": "Veal escalope, Aosta Valley style", "Salsiccia in umido": "Stewed sausage", "Civet di selvaggina": "Game civet", "Crema di Cogne": "Crema di Cogne",
+  // info
+  "Vieni a trovarci": "Come and see us", "Ti aspettiamo": "We are waiting for you", "a tavola.": "at the table.",
+  "Orari": "Opening hours", "Lunedì": "Monday", "Martedì": "Tuesday", "Mercoledì": "Wednesday", "Giovedì": "Thursday", "Venerdì": "Friday", "Sabato": "Saturday", "Domenica": "Sunday",
+  "Chiuso": "Closed", "Contatti": "Contact", "Prenota online": "Book online", "Scrivici una email": "Send us an email", "Indicazioni stradali": "Get directions",
+  "Mappa: Trattoria Praetoria": "Map: Trattoria Praetoria", "Privacy · Cookie": "Privacy · Cookie",
+  // open-now status
+  "Aperto · fino alle 14:30": "Open · until 14:30", "Aperto · fino alle 22:30": "Open · until 22:30", "Apre alle 12:00": "Opens at 12:00",
+  "Riapre alle 19:00": "Reopens at 19:00", "Riapre venerdì": "Reopens Friday", "Riapre domani 12:00": "Reopens tomorrow 12:00",
+  // menu dishes: [name, description] pairs, keyed by Italian name / description
+  "Il Rösti": "Rösti", "Rösti di patate con lardo di Arnad, castagne e miele": "Potato rösti with Arnad lard, chestnuts and honey",
+  "La Tartare": "Tartare", "Fassona piemontese, fonduta al Bleu d'Aoste, cipolla rossa caramellata": "Piedmontese Fassona beef, Bleu d'Aoste fondue, caramelised red onion",
+  "La nostra Messata": "Our Messata", "Carpaccio di sottofiletto marinato con sedano, lime e pepe rosa": "Marinated sirloin carpaccio with celery, lime and pink pepper",
+  "Il Vitello Tonnato 2.0": "Vitello Tonnato 2.0", "Girello cotto rosa, salsa tonnata, capperi fritti": "Rosy-cooked eye of round, tuna sauce, fried capers",
+  "Lumache alla parigina (12)": "Snails parisienne-style (12)", "Gratinate al forno con burro alle erbe e aglio": "Oven-gratinated with herb and garlic butter",
+  "Gli Gnocchi": "Gnocchi", "Fonduta di Fontina DOP e nocciole del Piemonte IGP": "Fontina DOP fondue and Piedmont IGP hazelnuts",
+  "Il Risotto": "Risotto", "Carnaroli mantecato al Roquefort con pere e noci": "Carnaroli creamed with Roquefort, pears and walnuts",
+  "Il Raviolo": "Ravioli", "Ravioli di carne al sugo di arrosto": "Meat ravioli in roast gravy",
+  "Il Fusillone": "Fusillone", "Fusilloni di Gragnano, pesto di pistacchio, radicchio e lime": "Gragnano fusilloni, pistachio pesto, radicchio and lime",
+  "Carbonada valdostana": "Carbonada valdostana", "Manzo cotto nel Petit Rouge con ginepro, servito con polenta": "Beef slow-cooked in Petit Rouge wine with juniper, served with polenta",
+  "Il Cervo in Civet": "Venison Civet", "Spezzatino di cervo al vino rosso ed erbe di montagna": "Venison stew with red wine and mountain herbs",
+  "La Fonduta": "Fonduta", "Fontina DOP con crostini e polenta Bramata e Taragna": "Fontina DOP with croutons and Bramata and Taragna polenta",
+  "Gratinata con Fontina DOP e burro": "Baked with Fontina DOP and butter", "Tagliere": "Tagliere",
+  "Mocetta, lardo, boudin, Fontina, Toma di Gressoney, Bleu d'Aoste": "Mocetta, lard, boudin, Fontina, Toma di Gressoney, Bleu d'Aoste",
+  "La Salsiccetta": "Salsiccetta", "Salsiccia valdostana in umido con polenta": "Aosta Valley sausage stewed, with polenta",
+  "Raclette Classica": "Classic Raclette", "Latte vaccino crudo · min. 2 persone": "Raw cow's milk · min. 2 people",
+  "Raclette Fumée": "Smoked Raclette", "Affumicata al ginepro e faggio · min. 2": "Smoked over juniper and beech · min. 2",
+  "Raclette Morbier": "Morbier Raclette", "Con linea di carbone vegetale · min. 2": "With a line of vegetable ash · min. 2",
+  "Il Mont d'Or": "Mont d'Or", "Sciolto al forno, con patate e mocetta · min. 2": "Baked until melted, with potatoes and mocetta · min. 2",
+  "La Reblochonnade": "Reblochonnade", "Reblochon, cipolle caramellate, pancetta · min. 2": "Reblochon, caramelised onions, pancetta · min. 2",
+  "La Chevrette Chaude": "Chevrette Chaude", "Capra alla griglia, cavolo rosso, miele e mele di Gressan": "Grilled goat cheese, red cabbage, honey and Gressan apples",
+  "La Picanha": "Picanha", "Manzo irlandese a bassa temperatura, salsa agrumi e miele": "Low-temperature Irish beef, citrus and honey sauce",
+  "Lo Tzigonier": "Tzigonier", "Sottofiletto lardellato allo spiedo con polenta": "Larded sirloin on the spit, with polenta",
+  "Al cervo piace il cioccolato": "The deer likes chocolate", "Carrè di cervo in crosta d'erbe, demi-glace al fondente": "Herb-crusted rack of venison, dark chocolate demi-glace",
+  "La Bourguignonne": "Bourguignonne", "Sottofiletto da cuocere in olio bollente con salse · min. 2": "Sirloin to cook yourself in boiling oil, with sauces · min. 2",
+  "Il Classico della Trattoria": "The Trattoria Classic", "Tortino ai 3 cioccolati con frutti di bosco": "Triple-chocolate cake with wild berries",
+  "Eclissi al Lampone": "Raspberry Eclipse", "Mezza sfera di fondente, gelée di lamponi, sale Maldon": "Dark chocolate half-sphere, raspberry gelée, Maldon salt",
+  "La Crema di Cogne": "Crema di Cogne", "Crema al cioccolato e rum con tegole valdostane": "Chocolate and rum cream with Aosta Valley tegole biscuits",
+  "Il Mascarpone": "Mascarpone", "Con frutti di bosco e crumble di tegole": "With wild berries and tegole crumble",
+  "Il Sorbetto": "Sorbet", "Sorbetto della casa": "House sorbet",
+};
+const T = (s) => (lang === "en" && EN[s] !== undefined ? EN[s] : s);
 
 requestAnimationFrame(() => document.querySelectorAll("[data-stagger]").forEach((b) => b.classList.add("is-shown")));
 const io = new IntersectionObserver((entries) => entries.forEach((e) => {
@@ -883,7 +1023,7 @@ function openStatus(d = new Date()) {
   return { open: false, label: "Riapre domani 12:00" };
 }
 const st = openStatus();
-document.querySelector("[data-status-label]").textContent = st.label;
+document.querySelector("[data-status-label]").textContent = T(st.label);
 document.querySelector("[data-status]").classList.toggle("is-open", st.open);
 document.querySelector(`[data-hours] [data-day="${new Date().getDay()}"]`)?.classList.add("is-today");
 
@@ -930,12 +1070,12 @@ const MENU = {
 };
 const dishesEl = document.querySelector("[data-dishes]");
 function renderMenu(cat, dir = 0) {
-  dishesEl.innerHTML = MENU[cat].map(([n, d, p]) => `<article class="dish"><h3>${n}</h3><p>${d}</p></article>`).join("");
+  dishesEl.innerHTML = MENU[cat].map(([n, d, p]) => `<article class="dish"><h3>${T(n)}</h3><p>${T(d)}</p></article>`).join("");
   dishesEl.classList.remove("from-right", "from-left");
   if (dir) { void dishesEl.offsetWidth; dishesEl.classList.add(dir > 0 ? "from-right" : "from-left"); }
 }
 renderMenu("antipasti");
-initTabs(document.querySelector('[data-tabs="menu"]'), (tab, dir) => renderMenu(tab.dataset.cat, dir));
+const snapMenuTabs = initTabs(document.querySelector('[data-tabs="menu"]'), (tab, dir) => renderMenu(tab.dataset.cat, dir));
 
 // ---- number pop-in (#02) ----
 function setDigits(group, str) {
@@ -987,7 +1127,7 @@ const RAC = {
 };
 snapRacTabs = initTabs(document.querySelector('[data-tabs="rac"]'), (tab) => {
   sheet.dataset.variant = tab.dataset.variant;
-  document.querySelector("[data-rac-desc]").textContent = RAC[tab.dataset.variant];
+  document.querySelector("[data-rac-desc]").textContent = T(RAC[tab.dataset.variant]);
 });
 
 // ---- builder demo ----
@@ -1023,15 +1163,18 @@ const state = { picked: new Set(PRESETS["Menù 1"]), guests: 25, wine: false };
 const esc = (s) => s.replace(/'/g, "&#39;");
 
 const coursesEl = document.querySelector("[data-courses]");
-coursesEl.innerHTML = COURSES.map((c) => `
+function renderCourses() {
+  coursesEl.innerHTML = COURSES.map((c) => `
   <div class="course">
-    <div class="course__head"><h4>${c.label}</h4><span data-count="${c.id}"></span></div>
+    <div class="course__head"><h4>${T(c.label)}</h4><span data-count="${c.id}"></span></div>
     <div class="picks">${c.dishes.map((d) => `
       <button type="button" class="pick" role="checkbox" aria-checked="false" data-dish="${d.id}">
-        <i aria-hidden="true">✓</i><span><b>${esc(d.name)}</b>${d.note ? `<small>${d.note}</small>` : ""}</span>
+        <i aria-hidden="true">✓</i><span><b>${esc(T(d.name))}</b>${d.note ? `<small>${T(d.note)}</small>` : ""}</span>
       </button>`).join("")}
     </div>
   </div>`).join("");
+}
+renderCourses();
 
 function matchedPreset() {
   return Object.keys(PRESETS).find((k) => {
@@ -1042,33 +1185,33 @@ function matchedPreset() {
 
 const sendBtn = document.querySelector("[data-send]");
 const dateEl = document.querySelector("#gdate");
-const fmtDate = (v) => v ? new Date(v + "T12:00").toLocaleDateString("it-IT", { weekday: "short", day: "numeric", month: "long" }) : "Da definire";
+const fmtDate = (v) => v ? new Date(v + "T12:00").toLocaleDateString(lang === "en" ? "en-GB" : "it-IT", { weekday: "short", day: "numeric", month: "long" }) : T("Da definire");
 function update() {
   const match = matchedPreset();
   document.querySelectorAll("[data-dish]").forEach((b) => b.setAttribute("aria-checked", String(state.picked.has(b.dataset.dish))));
   document.querySelectorAll("[data-preset]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.preset ? b.dataset.preset === match : state.picked.size === 0)));
   COURSES.forEach((c) => {
     const n = c.dishes.filter((d) => state.picked.has(d.id)).length;
-    document.querySelector(`[data-count="${c.id}"]`).textContent = n === 0 ? "Facoltativo" : n === 1 ? "1 piatto" : `${n} piatti da condividere`;
+    document.querySelector(`[data-count="${c.id}"]`).textContent = n === 0 ? T("Facoltativo") : n === 1 ? T("1 piatto") : `${n} ${T("piatti da condividere")}`;
   });
   document.querySelector("[data-running]").textContent = state.picked.size;
 
   const chosen = COURSES.map((c) => ({ label: c.label, dishes: c.dishes.filter((d) => state.picked.has(d.id)) })).filter((c) => c.dishes.length);
   document.querySelector("[data-preview]").innerHTML = chosen.length
-    ? `<div class="cp-title">Il vostro menù</div><div class="cp-sub">Trattoria Praetoria · ${state.guests} ospiti</div>` +
-      chosen.map((c) => `<div class="cp-course">${c.label}</div>` + c.dishes.map((d) => `<div class="cp-dish">${esc(d.name)}</div>`).join("")).join("") +
-      (state.wine ? `<div class="cp-course">Inclusi</div><div class="cp-dish">Calice di vino e caffè</div>` : "") +
-      (match ? `<span class="cp-match">Come la nostra proposta ${match}</span>` : "")
-    : `<div class="cp-empty">Scegliete i piatti a sinistra: il menù prende forma qui.</div>`;
+    ? `<div class="cp-title">${T("Il vostro menù")}</div><div class="cp-sub">Trattoria Praetoria · ${state.guests} ${T("ospiti")}</div>` +
+      chosen.map((c) => `<div class="cp-course">${T(c.label)}</div>` + c.dishes.map((d) => `<div class="cp-dish">${esc(T(d.name))}</div>`).join("")).join("") +
+      (state.wine ? `<div class="cp-course">${T("Inclusi")}</div><div class="cp-dish">${T("Calice di vino e caffè")}</div>` : "") +
+      (match ? `<span class="cp-match">${T("Come la nostra proposta")} ${T(match)}</span>` : "")
+    : `<div class="cp-empty">${T("Scegliete i piatti: il menù prende forma qui.")}</div>`;
 
   const ready = chosen.length >= 2;
   sendBtn.disabled = !ready;
-  document.querySelector("[data-send-hint]").textContent = ready
+  document.querySelector("[data-send-hint]").textContent = T(ready
     ? "Vi risponderemo con il preventivo. Nella versione finale riceverete anche il PDF del menù."
-    : "Scegliete piatti da almeno due portate per inviare la richiesta.";
+    : "Scegliete piatti da almeno due portate per inviare la richiesta.");
   document.querySelector("[data-sum-guests]").textContent = state.guests;
   document.querySelector("[data-sum-date]").textContent = fmtDate(dateEl.value);
-  document.querySelector("[data-sum-wine]").textContent = state.wine ? "Sì" : "No";
+  document.querySelector("[data-sum-wine]").textContent = T(state.wine ? "Sì" : "No");
   document.querySelector("[data-guests]").textContent = state.guests;
 }
 coursesEl.addEventListener("click", (e) => {
@@ -1100,7 +1243,9 @@ update();
 const toast = document.querySelector("[data-toast]");
 let toastTimer;
 sendBtn.addEventListener("click", () => {
-  document.querySelector("[data-toast-text]").textContent = `Demo: richiesta per ${state.guests} ospiti, menù di ${state.picked.size} piatti. Qui partirà la mail con l'anteprima del menù.`;
+  document.querySelector("[data-toast-text]").textContent = lang === "en"
+    ? `Demo: request for ${state.guests} guests, a menu of ${state.picked.size} dishes. This is where the email with the menu preview will be sent.`
+    : `Demo: richiesta per ${state.guests} ospiti, menù di ${state.picked.size} piatti. Qui partirà la mail con l'anteprima del menù.`;
   toast.classList.add("is-open");
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => toast.classList.remove("is-open"), 3800);
@@ -1119,7 +1264,7 @@ function showSlide(i, animate) {
   lbIndex = (i + SLIDES.length) % SLIDES.length;
   const sl = SLIDES[lbIndex];
   const apply = () => {
-    lbImg.src = sl.src; lbImg.alt = sl.alt;
+    lbImg.src = sl.src; lbImg.alt = T(sl.alt);
     lb.querySelector("[data-lb-count]").textContent = `${lbIndex + 1} / ${SLIDES.length}`;
     lbImg.classList.remove("is-swapping");
   };
@@ -1164,6 +1309,73 @@ lb.addEventListener("touchend", (e) => {
   if (Math.abs(dx) > 45) showSlide(lbIndex + (dx < 0 ? 1 : -1), true);
   touchX = null;
 });
+
+// ---- language switch: static text, attributes and dynamic renders ----
+const I18N_SKIP = "[data-dishes],[data-courses],[data-preview],[data-status-label],[data-sum-date],[data-sum-wine],[data-send-hint],[data-toast-text],[data-rac-desc],[data-lb-count],[data-running],[data-guests],[data-sum-guests],.concept-bar,script,style";
+const ATTRS = ["alt", "aria-label", "placeholder", "title"];
+const textOrig = new WeakMap();
+const attrOrig = new WeakMap();
+
+function applyStatic() {
+  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+  const nodes = [];
+  while (walker.nextNode()) nodes.push(walker.currentNode);
+  nodes.forEach((node) => {
+    if (node.parentElement.closest(I18N_SKIP)) return;
+    if (lang === "it") {
+      if (textOrig.has(node)) { node.nodeValue = textOrig.get(node); textOrig.delete(node); }
+      return;
+    }
+    if (textOrig.has(node)) return;
+    const raw = node.nodeValue, trimmed = raw.trim();
+    if (!trimmed || EN[trimmed] === undefined) return;
+    textOrig.set(node, raw);
+    node.nodeValue = raw.replace(trimmed, EN[trimmed]);
+  });
+  document.body.querySelectorAll("[alt],[aria-label],[placeholder],[title]").forEach((el) => {
+    if (el.closest(I18N_SKIP) || el.hasAttribute("data-lb-img")) return;
+    ATTRS.forEach((a) => {
+      if (!el.hasAttribute(a)) return;
+      const store = attrOrig.get(el) || {};
+      if (lang === "it") {
+        if (a in store) { el.setAttribute(a, store[a]); delete store[a]; }
+        return;
+      }
+      if (a in store) return;
+      const v = el.getAttribute(a);
+      if (EN[v] === undefined) return;
+      store[a] = v; attrOrig.set(el, store);
+      el.setAttribute(a, EN[v]);
+    });
+  });
+}
+
+function renderStatus() {
+  const st = openStatus();
+  document.querySelector("[data-status-label]").textContent = T(st.label);
+  document.querySelector("[data-status]").classList.toggle("is-open", st.open);
+}
+
+function setLang(next, persist = true) {
+  lang = next === "en" ? "en" : "it";
+  document.documentElement.lang = lang;
+  if (persist) { try { localStorage.setItem("lang", lang); } catch (e) {} }
+  document.querySelectorAll("[data-lang]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.lang === lang)));
+  applyStatic();
+  renderStatus();
+  const cat = document.querySelector('[data-tabs="menu"] .t-tab[aria-selected="true"]');
+  renderMenu(cat ? cat.dataset.cat : "antipasti");
+  document.querySelector("[data-rac-desc]").textContent = T(RAC[sheet.dataset.variant]);
+  renderCourses();
+  update();
+  // tab pills depend on label widths
+  document.fonts.ready.then(() => requestAnimationFrame(() => { snapMenuTabs && snapMenuTabs(); snapRacTabs && snapRacTabs(); }));
+}
+document.querySelectorAll("[data-lang]").forEach((b) => b.addEventListener("click", () => setLang(b.dataset.lang)));
+
+let initial = "it";
+try { initial = new URLSearchParams(location.search).get("lang") || localStorage.getItem("lang") || "it"; } catch (e) {}
+if (initial === "en") setLang("en", false);
 </script>
 </body>
 </html>
