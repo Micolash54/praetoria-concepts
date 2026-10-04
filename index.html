@@ -4,10 +4,10 @@
 <meta charset="utf-8" />
 <meta name="robots" content="noindex, nofollow" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Trattoria Praetoria · 5 redesign concepts</title>
+<title>Trattoria Praetoria · 3 redesign concepts</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Young+Serif&family=Instrument+Serif&family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,800&family=Newsreader:opsz,wght@6..72,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,800&family=Newsreader:opsz,wght@6..72,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 <style>
 :root {
   --duration-fast: 250ms;
@@ -25,7 +25,7 @@ header img { width: 84px; }
 h1 { font-family: "Fraunces", serif; font-weight: 400; font-size: clamp(2.2rem, 5vw, 3.6rem); line-height: 1.05; margin: 0; }
 h1 em { color: #7a2e22; }
 header p { margin: 0.6rem 0 0; color: var(--muted); max-width: 70ch; }
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1.2rem; padding-bottom: 2rem; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.2rem; padding-bottom: 2rem; }
 .card { display: flex; flex-direction: column; text-decoration: none; color: inherit; background: #fff; border: 1px solid var(--line); border-radius: 20px; overflow: hidden; transition: transform var(--duration-fast) var(--ease-smooth-out), box-shadow var(--duration-fast) var(--ease-smooth-out);
   opacity: 0; translate: 0 var(--distance-medium); filter: blur(var(--blur-medium)); animation: in var(--duration-very-slow) var(--ease-smooth-out) forwards; }
 .card:nth-child(2) { animation-delay: 40ms; } .card:nth-child(3) { animation-delay: 80ms; } .card:nth-child(4) { animation-delay: 120ms; } .card:nth-child(5) { animation-delay: 160ms; }
@@ -42,13 +42,8 @@ header p { margin: 0.6rem 0 0; color: var(--muted); max-width: 70ch; }
 .facts b { font-weight: 600; color: var(--ink); }
 .open { margin-top: auto; font-weight: 600; font-size: 0.9rem; }
 .rec { display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; background: #e9b52f; color: var(--ink); padding: 0.2rem 0.55rem; border-radius: 999px; margin-left: 0.4rem; vertical-align: middle; }
-.c1 { background: radial-gradient(70% 90% at 30% 100%, #6b3416, #14110f 70%); color: #f1e7d6; }
+.c1 { background: radial-gradient(70% 90% at 30% 100%, #3a3226, #121110 70%); color: #ece5d8; }
 .c1 .name { font-family: "Fraunces", serif; font-style: italic; }
-.c2 { background: #f5efe4; color: #2a2420; border-bottom: 1px solid var(--line); }
-.c2 .name { font-family: "Young Serif", serif; }
-.c2::after { content: ""; position: absolute; left: 0; right: 0; bottom: 34px; height: 60px; background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 60' preserveAspectRatio='none'><path d='M0 55 L50 30 L80 42 L130 8 L170 36 L210 22 L260 50 L310 14 L350 38 L400 26' fill='none' stroke='%238a5a36' stroke-width='2'/></svg>") center/100% 100% no-repeat; opacity: 0.5; }
-.c3 { background: #f3efe8; color: #141311; border-bottom: 1px solid var(--line); }
-.c3 .name { font-family: "Instrument Serif", serif; font-size: 3.4rem; letter-spacing: -0.03em; }
 .c4 { background: #e9b52f; color: #1b1712; border-bottom: 2.5px solid #1b1712; }
 .c4 .name { font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; font-stretch: 75%; text-transform: uppercase; font-size: 2.6rem; }
 .c5 { background: linear-gradient(135deg, #faf6f0, #f8ecd2); color: #221d18; border-bottom: 1px solid var(--line); }
@@ -64,38 +59,22 @@ header p { margin: 0.6rem 0 0; color: var(--muted); max-width: 70ch; }
   <header>
     <img src="assets/Logo-color.png" alt="Trattoria Praetoria" />
     <div>
-      <h1>Five directions for the new <em>Praetoria</em></h1>
-      <p>Each concept is a complete, clickable homepage built with your real content (Spring 2026 menu, group menus, the history of the house). All five include the Raclette showcase, a Groups / Menu Builder preview and transitions.dev motion. Try them on your phone too. Page copy is in Italian, like the live site.</p>
+      <h1>Three directions for the new <em>Praetoria</em></h1>
+      <p>Each concept is a complete, clickable homepage built with your real content (Spring 2026 menu, group menus, the history of the house). All three include the Raclette showcase, a Groups / Menu Builder preview and transitions.dev motion. Try them on your phone too. Page copy is in Italian, like the live site.</p>
     </div>
   </header>
 
   <div class="grid">
     <a class="card" href="01-pietra-e-fuoco.html">
-      <div class="swatch c1"><div class="dots"><i style="background:#14110f"></i><i style="background:#26201b"></i><i style="background:#e0782f"></i><i style="background:#f1e7d6"></i></div><span class="num">01</span><span class="name">Pietra e Fuoco</span></div>
+      <div class="swatch c1"><div class="dots"><i style="background:#121110"></i><i style="background:#211e1a"></i><i style="background:#b8975a"></i><i style="background:#ece5d8"></i></div><span class="num">01</span><span class="name">Pietra e Fuoco</span></div>
       <div class="body">
-        <p>Dark, candlelit, premium. The stone Cave take centre stage and the Raclette heats up as you scroll.</p>
-        <ul class="facts"><li><b>Font:</b> Fraunces + Inter</li><li><b>Raclette:</b> ember glow driven by scroll</li><li><b>Best for:</b> dinners, special evenings</li></ul>
-        <span class="open">Open concept →</span>
-      </div>
-    </a>
-    <a class="card" href="02-baita-alpina.html">
-      <div class="swatch c2"><div class="dots"><i style="background:#f5efe4"></i><i style="background:#8a5a36"></i><i style="background:#2f4a3a"></i><i style="background:#f2b632"></i></div><span class="num">02</span><span class="name">Baita Alpina <span class="rec">Recommended</span></span></div>
-      <div class="body">
-        <p>Warm, light, handcrafted. Linen, larch wood, hand-drawn mountains and a three-step "Raclette ritual".</p>
-        <ul class="facts"><li><b>Font:</b> Young Serif + Figtree + Caveat</li><li><b>Raclette:</b> 3-step ritual + variant picker</li><li><b>Best for:</b> tourists, families, groups</li></ul>
-        <span class="open">Open concept →</span>
-      </div>
-    </a>
-    <a class="card" href="03-editoriale.html">
-      <div class="swatch c3"><div class="dots"><i style="background:#f3efe8"></i><i style="background:#141311"></i><i style="background:#7a2e22"></i></div><span class="num">03</span><span class="name">Editoriale</span></div>
-      <div class="body">
-        <p>A food magazine: huge headlines, numbered chapters, lots of white space. The Raclette is the cover story.</p>
-        <ul class="facts"><li><b>Font:</b> Instrument Serif + Inter Tight</li><li><b>Raclette:</b> cover story with a fact sheet</li><li><b>Best for:</b> a very modern brand image</li></ul>
+        <p>Dark, candlelit and refined: warm charcoal, ivory and brass. The stone Cave take centre stage and the Raclette warms up as you scroll.</p>
+        <ul class="facts"><li><b>Font:</b> Fraunces + Inter</li><li><b>Raclette:</b> soft candle glow driven by scroll</li><li><b>Best for:</b> dinners, special evenings</li></ul>
         <span class="open">Open concept →</span>
       </div>
     </a>
     <a class="card" href="04-osteria-grafica.html">
-      <div class="swatch c4"><div class="dots"><i style="background:#f3e9d2"></i><i style="background:#d8432a"></i><i style="background:#1f4d3a"></i><i style="background:#1b1712"></i></div><span class="num">04</span><span class="name">Osteria Grafica</span></div>
+      <div class="swatch c4"><div class="dots"><i style="background:#f3e9d2"></i><i style="background:#d8432a"></i><i style="background:#1f4d3a"></i><i style="background:#1b1712"></i></div><span class="num">02</span><span class="name">Osteria Grafica</span></div>
       <div class="body">
         <p>Vintage Italian poster: giant type, flat colours, stickers and counters. The most memorable and playful.</p>
         <ul class="facts"><li><b>Font:</b> Bricolage Grotesque + DM Mono</li><li><b>Raclette:</b> a wheel that spins as you scroll</li><li><b>Best for:</b> standing out, younger crowd</li></ul>
@@ -103,7 +82,7 @@ header p { margin: 0.6rem 0 0; color: var(--muted); max-width: 70ch; }
       </div>
     </a>
     <a class="card" href="05-il-tavolo.html">
-      <div class="swatch c5"><div class="dots"><i style="background:#faf6f0"></i><i style="background:#6b4a32"></i><i style="background:#6f7f5f"></i><i style="background:#d9a441"></i></div><span class="num">05</span><span class="name">Il Tavolo</span></div>
+      <div class="swatch c5"><div class="dots"><i style="background:#faf6f0"></i><i style="background:#6b4a32"></i><i style="background:#6f7f5f"></i><i style="background:#d9a441"></i></div><span class="num">03</span><span class="name">Il Tavolo</span></div>
       <div class="body">
         <p>Mobile-first and app-like: live "open now" status, sticky action bar on phones, tabbed menu and a working Menu Builder demo.</p>
         <ul class="facts"><li><b>Font:</b> Newsreader + Plus Jakarta Sans</li><li><b>Raclette:</b> feature card that opens a modal</li><li><b>Best for:</b> everyday UX and the Menu Builder foundation</li></ul>
@@ -114,7 +93,7 @@ header p { margin: 0.6rem 0 0; color: var(--muted); max-width: 70ch; }
 
   <section class="notes">
     <div><h2>Raclette photo</h2><p>There is no Raclette photo in the project folders yet, so every concept uses a placeholder illustration. One or two shots of the cheese being scraped at the table are needed.</p></div>
-    <div><h2>Mix &amp; match</h2><p>The UX patterns from concept 5 (action bar, "open now", tabbed menu) can be applied to any of the visual styles.</p></div>
+    <div><h2>Mix &amp; match</h2><p>The UX patterns from concept 3 (Il Tavolo) (action bar, "open now", tabbed menu) can be applied to any of the visual styles.</p></div>
     <div><h2>Motion</h2><p>Text reveals, sliding tabs, modals, toasts, counters and toggles all use transitions.dev motion tokens and respect the "reduce motion" setting.</p></div>
   </section>
 </div>
