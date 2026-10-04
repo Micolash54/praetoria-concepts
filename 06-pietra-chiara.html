@@ -499,16 +499,23 @@ footer { background: var(--night); color: #a39a8b; margin-top: 3rem; padding-top
 .footer__inner { border-top: 0; padding-top: 2rem; }
 .footer__inner img { width: 120px; opacity: 0.9; }
 /* gluten-free badge in the menu header */
-.menu-head { flex-wrap: wrap; row-gap: 1.2rem; }
-.menu-head__side { display: flex; flex-direction: column; align-items: flex-end; gap: 0.8rem; }
+.menu-head { margin-bottom: 1.4rem; }
+.menu-head__row { display: flex; align-items: center; justify-content: space-between; gap: 1rem 2rem; flex-wrap: wrap; }
+.menu-head > p { margin: 0.5rem 0 0; color: var(--muted); }
+.menu-head h2 { font-size: clamp(2rem, 4.2vw, 3rem); }
+.menu-foot { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-top: 1.4rem; }
+.menu-foot .menu-note { margin: 0; }
+.menu-pdf svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.menu-pdf { background: var(--card); }
+.menu-pdf:hover { border-color: var(--wood); }
 .gf-badge { display: flex; align-items: center; gap: 0.85rem; padding: 0.75rem 1.1rem 0.75rem 0.75rem; border-radius: var(--r); background: var(--card); border: 1px solid var(--line); box-shadow: var(--shadow); }
 .gf-badge__icon { flex: none; width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; background: var(--sage-soft); border: 1px solid #d5d6c8; }
 .gf-badge__icon svg { width: 26px; height: 26px; fill: none; stroke: #3f4b36; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
 .gf-badge__text b { display: block; font-family: var(--serif); font-weight: 500; font-size: 1.08rem; line-height: 1.2; color: var(--ink); }
 .gf-badge__text small { display: block; font-size: 0.82rem; color: var(--muted); margin-top: 0.15rem; }
 @media (max-width: 760px) {
-  .menu-head__side { align-items: flex-start; width: 100%; }
   .gf-badge { width: 100%; }
+  .menu-pdf { width: 100%; }
 }
 /* ---------- rooms gallery (bento) ---------- */
 .gallery { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: clamp(150px, 17vw, 220px); gap: 12px; }
@@ -659,15 +666,16 @@ footer { background: var(--night); color: #a39a8b; margin-top: 3rem; padding-top
   </section>
 
   <section class="sec" id="menu" style="padding-top:0">
-    <div class="sec__head menu-head">
-      <div><span class="kicker">Primavera 2026</span><h2>Il menù</h2><p>Cucina valdostana di stagione, con prodotti dei produttori locali.</p></div>
-      <div class="menu-head__side">
-        <div class="gf-badge reveal" role="note">
-          <span class="gf-badge__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21V8"/><path d="M12 9c-2-.8-3.2-2.6-3.2-4.8 2 .8 3.2 2.6 3.2 4.8zM12 9c2-.8 3.2-2.6 3.2-4.8-2 .8-3.2 2.6-3.2 4.8zM12 14c-2-.8-3.2-2.6-3.2-4.8 2 .8 3.2 2.6 3.2 4.8zM12 14c2-.8 3.2-2.6 3.2-4.8-2 .8-3.2 2.6-3.2 4.8zM12 19c-2-.8-3.2-2.6-3.2-4.8 2 .8 3.2 2.6 3.2 4.8zM12 19c2-.8 3.2-2.6 3.2-4.8-2 .8-3.2 2.6-3.2 4.8z"/><path d="M4.5 4.5l15 15"/></svg></span>
-          <span class="gf-badge__text"><b>Tutto il menù anche senza glutine</b><small>Ogni piatto, su richiesta · Circuito AIC dal 2017</small></span>
-        </div>
-        <a class="link" href="#">Menù in PDF ↗</a>
+    <div class="menu-head">
+      <span class="kicker">Primavera 2026</span>
+      <div class="menu-head__row">
+        <h2>Il menù</h2>
+          <div class="gf-badge reveal" role="note">
+            <span class="gf-badge__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21V8"/><path d="M12 9c-2-.8-3.2-2.6-3.2-4.8 2 .8 3.2 2.6 3.2 4.8zM12 9c2-.8 3.2-2.6 3.2-4.8-2 .8-3.2 2.6-3.2 4.8zM12 14c-2-.8-3.2-2.6-3.2-4.8 2 .8 3.2 2.6 3.2 4.8zM12 14c2-.8 3.2-2.6 3.2-4.8-2 .8-3.2 2.6-3.2 4.8zM12 19c-2-.8-3.2-2.6-3.2-4.8 2 .8 3.2 2.6 3.2 4.8zM12 19c2-.8 3.2-2.6 3.2-4.8-2 .8-3.2 2.6-3.2 4.8z"/><path d="M4.5 4.5l15 15"/></svg></span>
+            <span class="gf-badge__text"><b>Tutto il menù anche senza glutine</b><small>Ogni piatto, su richiesta · Circuito AIC dal 2017</small></span>
+          </div>
       </div>
+      <p>Cucina valdostana di stagione, con prodotti dei produttori locali.</p>
     </div>
     <div class="menu-bar">
       <div class="t-tabs" role="tablist" aria-label="Categorie" data-tabs="menu">
@@ -681,7 +689,10 @@ footer { background: var(--night); color: #a39a8b; margin-top: 3rem; padding-top
       </div>
     </div>
     <div class="dishes" data-dishes role="tabpanel"></div>
-    <p class="menu-note">Avvisate il personale di sala per intolleranze o allergie.</p>
+    <div class="menu-foot">
+      <p class="menu-note">Avvisate il personale di sala per intolleranze o allergie.</p>
+      <a class="btn btn--light menu-pdf" href="#"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Scarica il menù completo in PDF</a>
+    </div>
   </section>
 
   <section class="sec" id="sale" style="padding-top:1rem">
@@ -846,7 +857,7 @@ footer { background: var(--night); color: #a39a8b; margin-top: 3rem; padding-top
 </nav>
 
 <nav class="concept-bar" aria-label="Concept navigation">
-  <a href="index.html">← Overview</a><span>Pietra Chiara · v5</span>
+  <a href="index.html">← Overview</a><span>Pietra Chiara · v6</span>
 </nav>
 
 <script>
